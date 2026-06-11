@@ -1,32 +1,34 @@
 export const opportunities = [
+  
   {
-    id: 1,
-    company: "Google SWE",
-    stage: "wishlist",
-  },
-  {
+  id: 1,
+
+  title: "Software Engineer Intern",
+
+  organization: "Google",
+
+  category: "Internship",
+
+  status: "Wishlist",
+
+  deadline: "2026-06-20",
+},
+
+    {
     id: 2,
-    company: "Uber Internship",
-    stage: "wishlist",
-  },
-  {
+    title: "Product Manager Intern",
+    organization: "Microsoft",
+    category: "Internship",
+    status: "Applied",
+    deadline: "2026-07-15",
+  },    
+    {
     id: 3,
-    company: "Deepvue",
-    stage: "applied",
-  },
-  {
-    id: 4,
-    company: "GSSoC",
-    stage: "applied",
-  },
-  {
-    id: 5,
-    company: "Infosys",
-    stage: "interview",
-  },
-  {
-    id: 6,
-    company: "Microsoft",
-    stage: "offer",
-  },
+    title: "Data Analyst",
+    organization: "Amazon", 
+    category: "Full-time",
+    status: "Interview",
+    deadline: "2026-08-01", 
+    },  
+    
 ];
