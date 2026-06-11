@@ -20,7 +20,7 @@ function KanbanColumn({
       {opportunities.map((item) => (
         <OpportunityCard
           key={item.id}
-          company={item.company}
+          opportunity={item}
         />
       ))}
     </div>
