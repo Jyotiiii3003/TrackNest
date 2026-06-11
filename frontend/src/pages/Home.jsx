@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import ProductShowcase from "../components/ProductShowcase";
 
 function Home() {
   return (
@@ -7,7 +8,7 @@ function Home() {
 
       <main className="max-w-7xl mx-auto px-6">
 
-        <section className="min-h-[85vh] flex items-center">
+        <section className="min-h-[75vh] flex items-center">
 
           <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
 
@@ -132,6 +133,8 @@ function Home() {
         </section>
 
       </main>
+
+      <ProductShowcase />
     </>
   );
 }
