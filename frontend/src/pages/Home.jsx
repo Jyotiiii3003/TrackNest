@@ -1,7 +1,10 @@
+import Navbar from "../components/Navbar";
+
 function Home() {
   return (
     <div className="min-h-screen bg-[#FFFDF8] overflow-hidden relative">
-      
+      <Navbar />
+
       {/* Background Blobs */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-[#FFD6E0] rounded-full blur-3xl opacity-40"></div>
 
