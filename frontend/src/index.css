@@ -34,3 +34,8 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+::selection {
+  background: var(--lavender);
+  color: white;
+}

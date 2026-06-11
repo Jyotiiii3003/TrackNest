@@ -3,7 +3,7 @@ import Topbar from "../components/Topbar";
 
 function AppLayout({ children }) {
   return (
-    <div className="flex">
+    <div className="flex bg-[#faf8f5]">
 
       <Sidebar />
 
@@ -11,7 +11,7 @@ function AppLayout({ children }) {
 
         <Topbar />
 
-        <main className="p-8">
+        <main className="px-12 py-10">
           {children}
         </main>
 

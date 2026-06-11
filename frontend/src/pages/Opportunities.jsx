@@ -56,16 +56,16 @@ return (
     <div className="flex justify-between items-center mb-10">
       <div>
         <h1
-          className="text-5xl font-bold"
-          style={{
-            fontFamily: "Outfit",
-          }}
+            className="text-7xl italic leading-none"
+            style={{
+            fontFamily: "Cormorant Garamond",
+            }}
         >
-          Opportunities
+            Opportunities
         </h1>
 
-        <p className="text-gray-500 mt-2">
-          Manage all applications.
+        <p className="text-gray-500 mt-3 text-lg">
+             Manage internships, hackathons and career opportunities.
         </p>
       </div>
 
@@ -91,13 +91,16 @@ return (
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="
-          w-full
-          md:w-96
-          border
-          border-gray-300
-          rounded-xl
-          p-3
-          bg-white
+        w-full
+        md:w-[420px]
+        bg-white
+        rounded-full
+        px-6
+        py-4
+        shadow-sm
+        border
+        border-black/5
+        outline-none
         "
       />
     </div>

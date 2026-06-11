@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Sidebar() {
+  const location = useLocation();
+
   const links = [
     { name: "Dashboard", path: "/dashboard" },
     { name: "Opportunities", path: "/opportunities" },
@@ -10,36 +12,49 @@ function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 border-r border-gray-200 bg-white h-screen p-6">
+    <aside className="w-72 h-screen bg-[#faf8f5] border-r border-black/5 p-6">
 
-      <h1
-        className="text-2xl font-bold mb-10"
-        style={{ fontFamily: "Outfit" }}
-      >
-        TrackNest
-      </h1>
+      <div className="mb-12">
+        <h1
+          className="text-4xl font-bold tracking-tight"
+          style={{ fontFamily: "Outfit" }}
+        >
+          TrackNest
+        </h1>
+
+        <p className="text-sm text-gray-500 mt-1"
+        style={{ fontFamily: "Cormorant Garamond" }}>
+          Your career operating system
+        </p>
+      </div>
 
       <nav className="space-y-2">
+        {links.map((link) => {
+          const active =
+            location.pathname === link.path;
 
-        {links.map((link) => (
-          <Link
-            key={link.path}
-            to={link.path}
-            className="
-              block
-              px-4
-              py-3
-              rounded-xl
-              hover:bg-gray-100
-              transition
-            "
-          >
-            {link.name}
-          </Link>
-        ))}
-
+          return (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`
+                block
+                px-4
+                py-3
+                rounded-2xl
+                transition-all
+                ${
+                  active
+                    ? "bg-black text-white"
+                    : "hover:bg-white"
+                }
+              `}
+            >
+              {link.name}
+            </Link>
+          );
+        })}
       </nav>
-
     </aside>
   );
 }

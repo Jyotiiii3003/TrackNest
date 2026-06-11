@@ -1,32 +1,50 @@
+import { useLocation } from "react-router-dom";
+
 function Topbar() {
+  const location = useLocation();
+
+  const pageTitles = {
+    "/dashboard": "Dashboard",
+    "/opportunities": "Opportunities",
+    "/calendar": "Calendar",
+    "/documents": "Documents",
+    "/settings": "Settings",
+  };
+
   return (
     <header
       className="
-        h-20
-        border-b
-        border-gray-200
-        flex
-        items-center
-        justify-between
-        px-8
-        bg-white
+      h-20
+      border-b
+      border-black/5
+      flex
+      items-center
+      justify-between
+      px-8
+      bg-[#faf8f5]
       "
     >
       <h2
-        className="text-2xl font-semibold"
+        className="text-xl font-semibold"
         style={{ fontFamily: "Outfit" }}
       >
-        Dashboard
+        {pageTitles[location.pathname] || "TrackNest"}
       </h2>
 
       <div
         className="
-          w-10
-          h-10
-          rounded-full
-          bg-[#C7B8EA]
+        w-12
+        h-12
+        rounded-full
+        bg-[#c7b8ea]
+        flex
+        items-center
+        justify-center
+        font-semibold
         "
-      />
+      >
+        JM
+      </div>
     </header>
   );
 }
