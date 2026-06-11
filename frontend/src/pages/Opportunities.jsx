@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import AppLayout from "../layouts/AppLayout";
 import KanbanColumn from "../components/opportunities/KanbanColumn";
 import { opportunities } from "../data/mockOpportunities";
@@ -6,7 +6,15 @@ import AddOpportunityModal from "../components/opportunities/AddOpportunityModal
 
 function Opportunities() {
   const [opportunitiesList, setOpportunitiesList] =
-    useState(opportunities);
+    useState(()=>{
+        const saved= localStorage.getItem("opportunities");
+        return saved ? JSON.parse(saved) : opportunities;
+    });
+    
+
+    useEffect(() => {
+        localStorage.setItem("opportunities", JSON.stringify(opportunitiesList));
+    }, [opportunitiesList]);
 
   const wishlist = opportunitiesList.filter(
     (item) => item.status === "Wishlist"
@@ -33,7 +41,8 @@ function Opportunities() {
     ...opportunitiesList,
     newOpportunity,
   ]);
-};
+    };
+
   return (
     <AppLayout>
       <div className="flex justify-between items-center mb-10">
@@ -96,6 +105,6 @@ function Opportunities() {
 
     </AppLayout>
   );
-}
 
+}
 export default Opportunities;
