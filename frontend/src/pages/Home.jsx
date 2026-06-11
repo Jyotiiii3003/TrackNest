@@ -2,101 +2,137 @@ import Navbar from "../components/Navbar";
 
 function Home() {
   return (
-    <div className="min-h-screen bg-[#FFFDF8] overflow-hidden relative">
+    <>
       <Navbar />
 
-      {/* Background Blobs */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-[#FFD6E0] rounded-full blur-3xl opacity-40"></div>
+      <main className="max-w-7xl mx-auto px-6">
 
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#B8C0FF] rounded-full blur-3xl opacity-40"></div>
+        <section className="min-h-[85vh] flex items-center">
 
-      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#CDEAC0] rounded-full blur-3xl opacity-40"></div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
 
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div>
 
-          {/* Left */}
-          <div>
+              <p className="uppercase tracking-[0.3em] text-xs text-gray-500 mb-8">
+                Student Opportunity CRM
+              </p>
 
-            <h1
-              className="text-5xl md:text-7xl font-bold"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Track your
-              <br />
-              opportunities
-            </h1>
+              <h1
+                className="text-6xl md:text-8xl leading-none font-semibold"
+                style={{ fontFamily: "Outfit" }}
+              >
+                Never lose
+                <br />
+                an opportunity
+              </h1>
 
-            <p
-              className="mt-4 text-5xl text-[#B56576]"
-              style={{ fontFamily: "Dancing Script" }}
-            >
-              beautifully 
-            </p>
+              <h2
+                className="text-6xl md:text-8xl italic mt-2"
+                style={{ fontFamily: "Cormorant Garamond" }}
+              >
+                again.
+              </h2>
 
-            <p className="mt-8 text-lg text-gray-600 max-w-xl">
-              Never miss an internship, hackathon,
-              scholarship, placement drive or open-source
-              opportunity again.
-            </p>
+              <p className="mt-8 max-w-lg text-gray-600 text-lg">
+                Track internships, hackathons, scholarships,
+                open-source programs and placement drives
+                from a single dashboard.
+              </p>
 
-            <div className="flex gap-4 mt-8">
-              <button className="px-6 py-3 rounded-xl bg-black text-white">
-                Get Started
-              </button>
+              <div className="flex gap-4 mt-10">
 
-              <button className="px-6 py-3 rounded-xl border">
-                View Demo
-              </button>
-            </div>
-          </div>
+                <button className="px-6 py-3 rounded-full bg-black text-white">
+                  Start Tracking
+                </button>
 
-          {/* Right */}
-          <div>
-
-            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-6 shadow-xl border">
-
-              <div className="flex justify-between mb-6">
-                <h3 className="font-bold">
-                  Dashboard Overview
-                </h3>
-
-                <span className="text-green-600">
-                  Active
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-
-                <div className="bg-[#FFD6E0] p-4 rounded-xl">
-                  <p>Total Applications</p>
-                  <h2 className="text-3xl font-bold">48</h2>
-                </div>
-
-                <div className="bg-[#B8C0FF] p-4 rounded-xl">
-                  <p>Interviews</p>
-                  <h2 className="text-3xl font-bold">6</h2>
-                </div>
-
-                <div className="bg-[#CDEAC0] p-4 rounded-xl">
-                  <p>Offers</p>
-                  <h2 className="text-3xl font-bold">2</h2>
-                </div>
-
-                <div className="bg-[#FFF4C2] p-4 rounded-xl">
-                  <p>Deadlines</p>
-                  <h2 className="text-3xl font-bold">5</h2>
-                </div>
+                <button className="px-6 py-3 rounded-full border">
+                  View Demo
+                </button>
 
               </div>
+
+            </div>
+
+            {/* Right Side */}
+            <div className="relative">
+
+              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#C7B8EA] blur-3xl opacity-30"></div>
+
+              <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
+
+                <div className="flex justify-between items-center mb-8">
+                  <h3 className="font-semibold">
+                    Dashboard
+                  </h3>
+
+                  <span className="text-green-600 text-sm">
+                    Active
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+
+                  <div className="border rounded-2xl p-4">
+                    <p className="text-sm text-gray-500">
+                      Applications
+                    </p>
+
+                    <h2 className="text-4xl font-bold">
+                      84
+                    </h2>
+                  </div>
+
+                  <div className="border rounded-2xl p-4">
+                    <p className="font-medium">
+                      Upcoming Deadlines
+                    </p>
+
+                    <div className="mt-3 space-y-2">
+
+                      <div className="flex justify-between">
+                        <span>Google SWE</span>
+                        <span>Tomorrow</span>
+                      </div>
+
+                      <div className="flex justify-between">
+                        <span>GSSoC</span>
+                        <span>3 Days</span>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+
+                    <div className="rounded-2xl p-4 bg-[#EAD7D1]">
+                      <p>Interviews</p>
+                      <h3 className="text-2xl font-bold">
+                        10
+                      </h3>
+                    </div>
+
+                    <div className="rounded-2xl p-4 bg-[#C7B8EA]">
+                      <p>Offers</p>
+                      <h3 className="text-2xl font-bold">
+                        2
+                      </h3>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
             </div>
 
           </div>
 
-        </div>
-      </section>
+        </section>
 
-    </div>
+      </main>
+    </>
   );
 }
 
