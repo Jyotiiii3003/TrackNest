@@ -1,7 +1,36 @@
 @import "tailwindcss";
 
+:root {
+  --bg: #FAF8F5;
+
+  --text: #111111;
+  --text-light: #6B7280;
+
+  --lavender: #C7B8EA;
+  --peach: #EAD7D1;
+
+  --border: #E5E5E5;
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  background: #FAF8F5;
-  color: #111111;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Typography */
+
+.heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+.accent {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+/* Smooth scrolling */
+
+html {
+  scroll-behavior: smooth;
 }
