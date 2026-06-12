@@ -2,9 +2,48 @@ import AppLayout from "../layouts/AppLayout";
 
 import StatCard from "../components/dashboard/StatCard";
 
-import { dashboardData } from "../data/mockDashboard";
+import {useState, useEffect} from "react";
 
 function Dashboard() {
+  const [opportunities, setOpportunities] =
+  useState([]);
+
+  useEffect(() => {
+    const saved =
+    localStorage.getItem("opportunities");
+
+    if (saved) {
+    setOpportunities(JSON.parse(saved));
+    }
+  }, []);
+
+
+   const stats = [
+  {
+    title: "Applications",
+    value: opportunities.length,
+  },
+  {
+    title: "Interviews",
+    value: opportunities.filter(
+      (item) => item.status === "Interview"
+    ).length,
+  },
+  {
+    title: "Offers",
+    value: opportunities.filter(
+      (item) => item.status === "Offer"
+    ).length,
+  },
+  {
+    title: "Upcoming Deadlines",
+    value: opportunities.filter(
+      (item) =>
+        new Date(item.deadline) > new Date()
+    ).length,
+  },
+];
+
   return (
     <AppLayout>
 
@@ -25,7 +64,7 @@ function Dashboard() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-          {dashboardData.stats.map((stat) => (
+          {stats.map((stat) => (
             <StatCard
               key={stat.title}
               title={stat.title}
