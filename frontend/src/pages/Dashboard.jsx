@@ -4,6 +4,7 @@ import StatCard from "../components/dashboard/StatCard";
 
 import {useState, useEffect} from "react";
 import RecentOpportunities from "../components/dashboard/RecentOpportunities";
+import UpcomingDeadlines from "../components/dashboard/UpcomingDeadlines";
 
 function Dashboard() {
   const [opportunities, setOpportunities] =
@@ -75,7 +76,15 @@ function Dashboard() {
 
         </div>
 
-        <RecentOpportunities opportunities={opportunities} />
+        <div className="grid lg:grid-cols-2 gap-6">
+        <RecentOpportunities
+        opportunities={opportunities}
+        />
+
+        <UpcomingDeadlines
+        opportunities={opportunities}
+       />
+      </div>
 
       </div>
 
