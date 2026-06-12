@@ -13,6 +13,7 @@ function AddOpportunityModal({
     category: "Internship",
     status: "Wishlist",
     deadline: "",
+    reminderDays:3
   }
 );
 
@@ -24,6 +25,7 @@ function AddOpportunityModal({
       category: "Internship",
       status: "Wishlist",
       deadline: "",
+      reminderDays: 3
     }
   );
 }, [existingData]);
@@ -44,6 +46,7 @@ function AddOpportunityModal({
       category: "Internship",
       status: "Wishlist",
       deadline: "",
+      reminderDays: 3
     });
 
     onClose();
@@ -90,25 +93,49 @@ function AddOpportunityModal({
           />
 
           <select
-            className="w-full border rounded-xl p-3"
-            value={formData.category}
-            onChange={(e) =>
+              className="w-full border rounded-xl p-3"
+              value={formData.category}
+              onChange={(e) =>
               setFormData({
-                ...formData,
-                category: e.target.value,
+              ...formData,
+              category: e.target.value,
               })
             }
           >
-            <option>Internship</option>
-            <option>Hackathon</option>
-            <option>Scholarship</option>
-            <option>Open Source</option>
-            <option>Campus Ambassador</option>
-            <option>Competition</option>
-            <option>Fellowship</option>
-            <option>Placement Drive</option>
-            <option>Event</option>
+          <option>Internship</option>
+          <option>Hackathon</option>
+          <option>Scholarship</option>
+          <option>Open Source</option>
+          <option>Campus Ambassador</option>
+          <option>Competition</option>
+          <option>Fellowship</option>
+          <option>Placement Drive</option>
+          <option>Event</option>
           </select>
+
+          <select
+                className="w-full border rounded-xl p-3"
+                value={formData.reminderDays}
+                onChange={(e) =>
+                  setFormData({
+                  ...formData,
+                  reminderDays: Number(e.target.value),
+                 })
+                  }
+                  >
+              <option value={1}>
+                 Remind 1 day before
+              </option>
+
+              <option value={3}>
+                 Remind 3 days before
+              </option>
+
+              <option value={7}>
+                 Remind 7 days before
+              </option>
+          </select>
+
 
           <select
             className="w-full border rounded-xl p-3"

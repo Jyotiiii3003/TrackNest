@@ -20,7 +20,7 @@ export function checkDeadlines(
         (1000 * 60 * 60 * 24)
     );
 
-    if (diffDays >= 0 && diffDays <= 3) {
+    if (diffDays >= 0 && diffDays <= item.reminderDays) {
       new Notification(
         `${item.title} deadline approaching`,
         {

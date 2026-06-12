@@ -45,6 +45,10 @@ function OpportunityCard({ opportunity,onDelete,onMove,onEdit }) {
         {opportunity.organization}
       </p>
 
+        <p className="text-xs text-gray-400 mt-2">
+        Reminder: {opportunity.reminderDays} day(s) before
+        </p>
+
       <div className="flex justify-between items-center mt-4">
         <span
         className={`
