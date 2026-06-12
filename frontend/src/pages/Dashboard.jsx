@@ -3,6 +3,7 @@ import AppLayout from "../layouts/AppLayout";
 import StatCard from "../components/dashboard/StatCard";
 
 import {useState, useEffect} from "react";
+import RecentOpportunities from "../components/dashboard/RecentOpportunities";
 
 function Dashboard() {
   const [opportunities, setOpportunities] =
@@ -73,6 +74,8 @@ function Dashboard() {
           ))}
 
         </div>
+
+        <RecentOpportunities opportunities={opportunities} />
 
       </div>
 
