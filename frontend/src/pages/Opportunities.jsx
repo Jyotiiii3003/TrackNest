@@ -90,6 +90,25 @@ function Opportunities() {
 
   setOpportunitiesList(updated);
   };
+  const [editingOpportunity, setEditingOpportunity] =
+  useState(null);
+  const handleEditOpportunity = (updatedOpportunity) => {
+  const updated =
+    opportunitiesList.map((item) =>
+      item.id === updatedOpportunity.id
+        ? updatedOpportunity
+        : item
+    );
+
+  setOpportunitiesList(updated);
+  setEditingOpportunity(null);
+};
+
+    const openEditModal = (opportunity) => {
+    setEditingOpportunity(opportunity);
+    setIsModalOpen(true);
+    };
+
 return (
   <AppLayout>
     <div className="flex justify-between items-center mb-10">
@@ -151,6 +170,7 @@ return (
         opportunities={wishlist}
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
+        onEdit={openEditModal}
       />
 
       <KanbanColumn
@@ -158,6 +178,7 @@ return (
         opportunities={applied}
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
+        onEdit={openEditModal}
       />
 
       <KanbanColumn
@@ -165,6 +186,7 @@ return (
         opportunities={interview}
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
+        onEdit={openEditModal}
       />
 
       <KanbanColumn
@@ -172,14 +194,20 @@ return (
         opportunities={offer}
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
+        onEdit={openEditModal}
       />
     </div>
 
     {/* Modal */}
     <AddOpportunityModal
       isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
-      onAdd={handleAddOpportunity}
+      onClose={() => {setIsModalOpen(false)
+        setEditingOpportunity(null);
+      }}
+      existingData={editingOpportunity}
+      onAdd={editingOpportunity
+        ?handleEditOpportunity
+        : handleAddOpportunity}
     />
   </AppLayout>
 );

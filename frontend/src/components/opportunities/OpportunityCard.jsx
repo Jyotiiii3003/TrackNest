@@ -1,4 +1,4 @@
-function OpportunityCard({ opportunity,onDelete,onMove }) {
+function OpportunityCard({ opportunity,onDelete,onMove,onEdit }) {
 
     const categoryColors = {
   Internship: "bg-purple-100 text-purple-700",
@@ -91,6 +91,18 @@ function OpportunityCard({ opportunity,onDelete,onMove }) {
       "
       >
       Move →
+      </button>
+      <button
+      onClick={() => onEdit(opportunity)}
+      className="
+      mt-4
+      text-s
+      text-black
+      hover:text-gray-600
+       transition
+      "
+      >
+      Edit
       </button>
       </div>
     </div>

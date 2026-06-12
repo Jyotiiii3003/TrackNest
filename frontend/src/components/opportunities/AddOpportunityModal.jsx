@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
 
 function AddOpportunityModal({
   isOpen,
   onClose,
   onAdd,
+  existingData
 }) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(
+  existingData || {
     title: "",
     organization: "",
     category: "Internship",
     status: "Wishlist",
     deadline: "",
-  });
+  }
+);
+
+    useEffect(() => {
+  setFormData(
+    existingData || {
+      title: "",
+      organization: "",
+      category: "Internship",
+      status: "Wishlist",
+      deadline: "",
+    }
+  );
+}, [existingData]);
 
   if (!isOpen) return null;
 
