@@ -59,6 +59,37 @@ function Opportunities() {
   );
   };
 
+  const handleMoveOpportunity = (id) => {
+  const statusFlow = [
+    "Wishlist",
+    "Applied",
+    "Interview",
+    "Offer",
+  ];
+
+  const updated =
+    opportunitiesList.map((item) => {
+      if (item.id === id) {
+        const currentIndex =
+          statusFlow.indexOf(item.status);
+
+        if (
+          currentIndex <
+          statusFlow.length - 1
+        ) {
+          return {
+            ...item,
+            status:
+              statusFlow[currentIndex + 1],
+          };
+        }
+      }
+
+      return item;
+    });
+
+  setOpportunitiesList(updated);
+  };
 return (
   <AppLayout>
     <div className="flex justify-between items-center mb-10">
@@ -119,24 +150,28 @@ return (
         title="Wishlist"
         opportunities={wishlist}
         onDelete={handleDeleteOpportunity}
+        onMove={handleMoveOpportunity}
       />
 
       <KanbanColumn
         title="Applied"
         opportunities={applied}
         onDelete={handleDeleteOpportunity}
+        onMove={handleMoveOpportunity}
       />
 
       <KanbanColumn
         title="Interview"
         opportunities={interview}
         onDelete={handleDeleteOpportunity}
+        onMove={handleMoveOpportunity}
       />
 
       <KanbanColumn
         title="Offer"
         opportunities={offer}
         onDelete={handleDeleteOpportunity}
+        onMove={handleMoveOpportunity}
       />
     </div>
 

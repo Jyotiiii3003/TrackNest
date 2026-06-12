@@ -4,6 +4,7 @@ function KanbanColumn({
   title,
   opportunities,
   onDelete,
+  onMove,
 }) {
   return (
     <div
@@ -36,6 +37,7 @@ function KanbanColumn({
           key={item.id}
           opportunity={item}
           onDelete={onDelete}
+          onMove={onMove}
         />
       ))}
     </div>

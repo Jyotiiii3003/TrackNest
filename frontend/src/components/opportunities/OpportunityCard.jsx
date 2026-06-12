@@ -1,4 +1,4 @@
-function OpportunityCard({ opportunity,onDelete }) {
+function OpportunityCard({ opportunity,onDelete,onMove }) {
 
     const categoryColors = {
   Internship: "bg-purple-100 text-purple-700",
@@ -27,7 +27,7 @@ function OpportunityCard({ opportunity,onDelete }) {
       "
     >
       <h3
-  className="text-base leading-tight"
+  className="tracking-tight text-xl leading-tight"
   style={{
     fontFamily: "Outfit",
     fontWeight: 600,
@@ -37,7 +37,7 @@ function OpportunityCard({ opportunity,onDelete }) {
       </h3>
 
      <p
-  className="text-sm mt-1 text-gray-500"
+  className="text-md mt-1 text-gray-500"
   style={{
     fontFamily: "Inter",
   }}
@@ -48,7 +48,7 @@ function OpportunityCard({ opportunity,onDelete }) {
       <div className="flex justify-between items-center mt-4">
         <span
         className={`
-        text-xs
+        text-s
         px-2
         py-1
         rounded-full
@@ -58,7 +58,7 @@ function OpportunityCard({ opportunity,onDelete }) {
         {opportunity.category}
         </span>
 
-        <span className="text-xs text-gray-400">
+        <span className="text-s text-gray-400">
           {new Date(
             opportunity.deadline
           ).toLocaleDateString("en-IN", {
@@ -66,18 +66,32 @@ function OpportunityCard({ opportunity,onDelete }) {
             month: "short",
           })}
         </span>
+      </div>
+      <div className="flex gap-4 mt-4">
         <button
          onClick={() => onDelete(opportunity.id)}
         className="
         mt-4
-        text-xs
+        text-s
         text-red-500
         hover:text-red-700
         transition
         "
         >
-  Delete
-</button>
+        Delete
+      </button>
+      <button
+      onClick={() => onMove(opportunity.id)}
+      className="
+      mt-4
+      text-s
+      text-blue-500
+      hover:text-blue-700
+      transition
+      "
+      >
+      Move →
+      </button>
       </div>
     </div>
   );
