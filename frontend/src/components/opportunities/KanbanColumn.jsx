@@ -3,6 +3,7 @@ import OpportunityCard from "./OpportunityCard";
 function KanbanColumn({
   title,
   opportunities,
+  onDelete,
 }) {
   return (
     <div
@@ -34,6 +35,7 @@ function KanbanColumn({
         <OpportunityCard
           key={item.id}
           opportunity={item}
+          onDelete={onDelete}
         />
       ))}
     </div>

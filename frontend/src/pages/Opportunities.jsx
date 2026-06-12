@@ -51,6 +51,14 @@ function Opportunities() {
   ]);
     };
 
+  const handleDeleteOpportunity = (id) => {
+  setOpportunitiesList(
+    opportunitiesList.filter(
+      (item) => item.id !== id
+    )
+  );
+  };
+
 return (
   <AppLayout>
     <div className="flex justify-between items-center mb-10">
@@ -110,21 +118,25 @@ return (
       <KanbanColumn
         title="Wishlist"
         opportunities={wishlist}
+        onDelete={handleDeleteOpportunity}
       />
 
       <KanbanColumn
         title="Applied"
         opportunities={applied}
+        onDelete={handleDeleteOpportunity}
       />
 
       <KanbanColumn
         title="Interview"
         opportunities={interview}
+        onDelete={handleDeleteOpportunity}
       />
 
       <KanbanColumn
         title="Offer"
         opportunities={offer}
+        onDelete={handleDeleteOpportunity}
       />
     </div>
 

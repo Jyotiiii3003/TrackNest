@@ -12,7 +12,7 @@ function Sidebar() {
   ];
 
   return (
-    <aside className="w-72 h-screen bg-[#faf8f5] border-r border-black/5 p-6">
+    <aside className="w-64 h-screen bg-[#faf8f5] border-r border-black/5 p-6">
 
       <div className="mb-12">
         <h1
@@ -22,9 +22,9 @@ function Sidebar() {
           TrackNest
         </h1>
 
-        <p className="text-sm text-gray-500 mt-1"
+        <p className="text-sm italic text-gray-500 mt-1"
         style={{ fontFamily: "Cormorant Garamond" }}>
-          Your career operating system
+          organize every opportunity
         </p>
       </div>
 

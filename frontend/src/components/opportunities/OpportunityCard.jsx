@@ -1,4 +1,4 @@
-function OpportunityCard({ opportunity }) {
+function OpportunityCard({ opportunity,onDelete }) {
 
     const categoryColors = {
   Internship: "bg-purple-100 text-purple-700",
@@ -66,6 +66,18 @@ function OpportunityCard({ opportunity }) {
             month: "short",
           })}
         </span>
+        <button
+         onClick={() => onDelete(opportunity.id)}
+        className="
+        mt-4
+        text-xs
+        text-red-500
+        hover:text-red-700
+        transition
+        "
+        >
+  Delete
+</button>
       </div>
     </div>
   );
