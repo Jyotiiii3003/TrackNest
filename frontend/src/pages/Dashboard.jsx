@@ -1,7 +1,7 @@
 import AppLayout from "../layouts/AppLayout";
 
 import StatCard from "../components/dashboard/StatCard";
-
+import { checkDeadlines } from "../utils/checkDeadlines";
 import {useState, useEffect} from "react";
 import RecentOpportunities from "../components/dashboard/RecentOpportunities";
 import UpcomingDeadlines from "../components/dashboard/UpcomingDeadlines";
@@ -15,7 +15,9 @@ function Dashboard() {
     localStorage.getItem("opportunities");
 
     if (saved) {
-    setOpportunities(JSON.parse(saved));
+      const parsed=JSON.parse(saved);
+    setOpportunities(parsed);
+    checkDeadlines(parsed);
     }
   }, []);
 
