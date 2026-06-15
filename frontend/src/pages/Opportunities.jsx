@@ -115,10 +115,19 @@ function Opportunities() {
           currentIndex <
           statusFlow.length - 1
         ) {
-          return {
-            ...item,
-            status:
-              statusFlow[currentIndex + 1],
+         return {
+          ...item,
+          status:
+          statusFlow[currentIndex + 1],
+          history: [
+          ...(item.history || []),
+          {
+          action: `Moved to ${
+          statusFlow[currentIndex + 1]
+          }`,
+          date: new Date().toLocaleString(),
+           },
+          ],
           };
         }
       }
@@ -136,8 +145,17 @@ function Opportunities() {
   const updated =
     opportunitiesList.map((item) =>
       item.id === updatedOpportunity.id
-        ? updatedOpportunity
-        : item
+    ? {
+      ...updatedOpportunity,
+      history: [
+        ...(item.history || []),
+        {
+          action: "Edited",
+          date: new Date().toLocaleString(),
+        },
+      ],
+    }
+    : item
     );
 
   setOpportunitiesList(updated);

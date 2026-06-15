@@ -137,6 +137,35 @@ function OpportunityDetailModal({
               before
             </p>
           </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">
+                Activity Timeline
+            </h3>
+
+            <div className="space-y-3">
+                {opportunity.history?.map(
+                (entry, index) => (
+            <div
+                key={index}
+                className="
+                bg-gray-50
+                rounded-2xl
+                p-3
+                "
+                >
+                <p className="font-medium">
+                    {entry.action}
+                </p>
+
+                <p className="text-sm text-gray-400 mt-1">
+                    {entry.date}
+                </p>
+                </div>
+                )
+                )}
+            </div>
+            </div>
         </div>
       </motion.div>
     </div>

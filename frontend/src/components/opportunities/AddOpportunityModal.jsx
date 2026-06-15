@@ -42,8 +42,14 @@ function AddOpportunityModal({
     e.preventDefault();
 
     onAdd({
-      id: existingData?.id || Date.now(),
-      ...formData,
+    id: existingData?.id || Date.now(),
+    ...formData,
+    history: existingData?.history || [
+    {
+      action: "Created",
+      date: new Date().toLocaleString(),
+    },
+    ],
     });
 
     setFormData({
