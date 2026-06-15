@@ -17,6 +17,10 @@ function AddOpportunityModal({
     resumeName: "",
     coverLetterName: "",
     notes: "",
+    importantLinks: "",
+    referralContact: "",
+    strategyNotes: "",
+    prepNotes: ""
   }
 );
 
@@ -32,6 +36,10 @@ function AddOpportunityModal({
       resumeName: "",
       coverLetterName: "",
       notes: "",
+      importantLinks: "",
+      referralContact: "",
+      strategyNotes: "",
+      prepNotes: ""
     }
   );
 }, [existingData]);
@@ -155,6 +163,56 @@ function AddOpportunityModal({
             }
           />
 
+          <textarea
+            placeholder="Important Links"
+            className="w-full border rounded-xl p-3"
+            rows="2"
+            value={formData.importantLinks}
+            onChange={(e) =>
+            setFormData({
+            ...formData,
+            importantLinks: e.target.value,
+            })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Referral Contact"
+            className="w-full border rounded-xl p-3"
+            value={formData.referralContact}
+            onChange={(e) =>
+            setFormData({
+            ...formData,
+            referralContact: e.target.value,
+            })
+            }
+          />
+
+          <textarea
+            placeholder="Strategy Notes"
+            className="w-full border rounded-xl p-3"
+            rows="3"
+            value={formData.strategyNotes}
+            onChange={(e) =>
+            setFormData({
+            ...formData,
+            strategyNotes: e.target.value,
+            })
+            }
+          />
+
+          <textarea
+            placeholder="Preparation Notes"
+            className="w-full border rounded-xl p-3"
+            rows="3"
+            value={formData.prepNotes}
+            onChange={(e) =>
+            setFormData({ 
+            ...formData,
+            prepNotes: e.target.value,
+            })
+            }
+          />
           <select
               className="w-full border rounded-xl p-3"
               value={formData.category}

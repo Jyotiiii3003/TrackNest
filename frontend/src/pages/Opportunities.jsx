@@ -33,7 +33,7 @@ function Opportunities() {
   const filteredOpportunities =
   opportunitiesList
     .filter((item) =>
-      `${item.title} ${item.organization} ${item.category} ${item.notes || ""}`
+      `${item.title} ${item.organization} ${item.category} ${item.notes || ""} ${item.importantLinks || ""} ${item.referralContact || ""} ${item.strategyNotes || ""} ${item.prepNotes || ""}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
     )

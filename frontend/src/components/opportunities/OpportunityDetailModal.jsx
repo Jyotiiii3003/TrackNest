@@ -127,6 +127,46 @@ function OpportunityDetailModal({
             </div>
           </div>
 
+            <div>
+                <h3 className="font-semibold mb-2">
+                Important Links
+                </h3>
+
+                <div className="bg-gray-50 p-4 rounded-2xl">
+                {opportunity.importantLinks || "No links"}
+                </div>
+            </div> 
+
+            <div>
+                    <h3 className="font-semibold mb-2">
+                    Referral Contact
+                    </h3>
+
+                <p>
+                 {opportunity.referralContact || "None"}
+                </p>
+            </div>
+
+            <div>
+                <h3 className="font-semibold mb-2">
+                Strategy Notes
+                 </h3>
+
+                <div className="bg-gray-50 p-4 rounded-2xl">
+                    {opportunity.strategyNotes || "No strategy notes"}
+                </div>
+            </div>
+
+            <div>
+                <h3 className="font-semibold mb-2">
+                Interview Prep
+                 </h3>
+
+                <div className="bg-gray-50 p-4 rounded-2xl">
+                {opportunity.prepNotes || "No prep notes"}
+                </div>
+            </div>
+
           <div>
             <h3 className="font-semibold mb-2">
               Reminder
