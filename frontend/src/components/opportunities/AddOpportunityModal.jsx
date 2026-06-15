@@ -78,7 +78,7 @@ function AddOpportunityModal({
 
   return (
     <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
-      <div className="bg-white rounded-3xl p-6 w-[500px]">
+      <div className="bg-white rounded-3xl p-6 w-[550px] max-h-[90vh] overflow-y-auto shadow-xl">
 
         <h2 className="text-2xl font-bold mb-6">
           Add Opportunity
@@ -321,7 +321,7 @@ function AddOpportunityModal({
             }
           />
 
-          <div className="flex justify-end gap-3 pt-4">
+          <div className="sticky bottom-0 bg-white pt-4 flex justify-end gap-3 pb-2 mt-4">
 
             <button
               type="button"

@@ -45,6 +45,8 @@ function OpportunityDetailModal({
         rounded-3xl
         p-8
         w-[600px]
+        max-h-[90vh]
+        overflow-y-auto
         shadow-xl
         "
       >
