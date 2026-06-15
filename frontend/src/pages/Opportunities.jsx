@@ -3,7 +3,7 @@ import AppLayout from "../layouts/AppLayout";
 import KanbanColumn from "../components/opportunities/KanbanColumn";
 import { opportunities } from "../data/mockOpportunities";
 import AddOpportunityModal from "../components/opportunities/AddOpportunityModal";
-
+import OpportunityDetailModal from "../components/opportunities/OpportunityDetailModal";
 function Opportunities() {
   const [opportunitiesList, setOpportunitiesList] =
     useState(()=>{
@@ -120,7 +120,12 @@ function Opportunities() {
     (item) => item.status === "Rejected"
   );    
 
+  const [selectedOpportunity, setSelectedOpportunity] =
+  useState(null);
 
+  const openDetails = (opportunity) => {
+  setSelectedOpportunity(opportunity);
+  };
 return (
   <AppLayout>
     <div className="flex justify-between items-center mb-10">
@@ -183,6 +188,7 @@ return (
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
+        onView={openDetails}
       />
 
       <KanbanColumn
@@ -191,6 +197,7 @@ return (
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
+        onView={openDetails}
       />
 
       <KanbanColumn
@@ -199,6 +206,7 @@ return (
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
+        onView={openDetails}
       />
 
       <KanbanColumn
@@ -207,6 +215,7 @@ return (
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
+        onView={openDetails}
       />
 
       <KanbanColumn
@@ -215,6 +224,7 @@ return (
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
+        onView={openDetails}
       />
 
       <KanbanColumn
@@ -223,6 +233,7 @@ return (
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
+        onView={openDetails}
       />
     </div>
 
@@ -236,6 +247,14 @@ return (
       onAdd={editingOpportunity
         ?handleEditOpportunity
         : handleAddOpportunity}
+    />
+
+    <OpportunityDetailModal
+    isOpen={!!selectedOpportunity}
+    opportunity={selectedOpportunity}
+    onClose={() =>
+    setSelectedOpportunity(null)
+    }
     />
   </AppLayout>
 );
