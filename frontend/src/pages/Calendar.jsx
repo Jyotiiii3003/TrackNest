@@ -1,73 +1,43 @@
 import { useEffect, useState } from "react";
 import AppLayout from "../layouts/AppLayout";
+import ReactCalendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
-function Calendar() {
+function CalendarPage() {
+  const [value, setValue] = useState(
+    new Date()
+  );
+
   const [opportunities, setOpportunities] =
     useState([]);
 
   useEffect(() => {
     const saved =
-      localStorage.getItem("opportunities");
+      JSON.parse(
+        localStorage.getItem(
+          "opportunities"
+        )
+      ) || [];
 
-    if (saved) {
-      setOpportunities(JSON.parse(saved));
-    }
+    setOpportunities(saved);
   }, []);
 
-  const sortedDeadlines =
-    [...opportunities].sort(
-      (a, b) =>
-        new Date(a.deadline) -
-        new Date(b.deadline)
-    );
-
-    const getDeadlineStatus = (deadline) => {
-  const today = new Date();
-  const dueDate = new Date(deadline);
-
-  const diffTime =
-    dueDate - today;
-
-  const diffDays = Math.ceil(
-    diffTime /
-      (1000 * 60 * 60 * 24)
-  );
-
-  if (diffDays < 0) {
-    return {
-      label: "Overdue",
-      color: "text-red-500",
-    };
-  }
-
-  if (diffDays === 0) {
-    return {
-      label: "Today",
-      color: "text-orange-500",
-    };
-  }
-
-  if (diffDays === 1) {
-    return {
-      label: "Tomorrow",
-      color: "text-yellow-500",
-    };
-  }
-
-  return {
-    label: `${diffDays} days left`,
-    color: "text-green-500",
-  };
-};
-
+  const selectedDateOpportunities =
+    opportunities.filter((item) => {
+      return (
+        new Date(
+          item.deadline
+        ).toDateString() ===
+        value.toDateString()
+      );
+    });
 
   return (
     <AppLayout>
       <div className="space-y-10">
-
         <div>
           <h1
-            className="text-7xl italic leading-none"
+            className="text-6xl italic"
             style={{
               fontFamily:
                 "Cormorant Garamond",
@@ -77,72 +47,69 @@ function Calendar() {
           </h1>
 
           <p className="text-gray-500 mt-3 text-lg">
-            Track all your upcoming deadlines.
+            Track all your deadlines
+            visually.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="grid lg:grid-cols-2 gap-8">
+          <div className="bg-white rounded-3xl p-6 shadow-sm">
+            <ReactCalendar
+              onChange={setValue}
+              value={value}
+            />
+          </div>
 
-          {sortedDeadlines.map((item) => {
-             const status =
-             getDeadlineStatus(item.deadline);
-
-            return (
-              <div
-              key={item.id}
-              className="
-              bg-white
-              rounded-3xl
-              p-5
-              shadow-sm
-              flex
-              justify-between
-              items-center
-              "
-              >
-            <div>
-             <h3
-                className="text-xl"
-                style={{
-                 fontFamily: "Outfit",
-                 fontWeight: 600,
-                }}
-              >
-                {item.title}
-              </h3>
-
-              <p className="text-gray-500 mt-1">
-              {item.organization}
-              </p>
-            </div>
-
-            <div className="text-right">
-            <p className="text-lg font-medium">
-                {new Date(
-                item.deadline
-                ).toLocaleDateString(
+          <div className="bg-white rounded-3xl p-6 shadow-sm">
+            <h2 className="text-2xl font-semibold mb-4">
+              Deadlines on{" "}
+              {value.toLocaleDateString(
                 "en-IN",
                 {
                   day: "numeric",
                   month: "short",
+                  year: "numeric",
                 }
               )}
-            </p>
+            </h2>
 
-              <p
-                className={`text-sm mt-1 ${status.color}`}
-              >
-                {status.label}
+            {selectedDateOpportunities.length >
+            0 ? (
+              <div className="space-y-4">
+                {selectedDateOpportunities.map(
+                  (item) => (
+                    <div
+                      key={item.id}
+                      className="border rounded-2xl p-4"
+                    >
+                      <h3 className="font-semibold">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-gray-500 mt-1">
+                        {
+                          item.organization
+                        }
+                      </p>
+
+                      <p className="text-sm text-gray-400 mt-2">
+                        {item.category}
+                      </p>
+                    </div>
+                  )
+                )}
+              </div>
+            ) : (
+              <p className="text-gray-400">
+                No deadlines on this
+                date.
               </p>
-            </div>
+            )}
           </div>
-        );
-        })}
-
         </div>
       </div>
     </AppLayout>
   );
 }
 
-export default Calendar;
+export default CalendarPage;

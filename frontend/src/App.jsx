@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import { useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
 import Opportunities from "./pages/Opportunities";
-import Calendar from "./pages/Calendar";
+import CalendarPage from "./pages/Calendar";
 import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
 
@@ -36,7 +36,7 @@ function App() {
 
       <Route
         path="/calendar"
-        element={<Calendar />}
+        element={<CalendarPage />}
       />
 
       <Route
