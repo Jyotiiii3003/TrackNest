@@ -106,6 +106,18 @@ function Dashboard() {
       value: total,
     },
     {
+    title: "Interviews",
+    value: opportunities.filter(
+      (item) => item.status === "Interview"
+    ).length,
+    },
+    {
+    title: "Offers",
+    value: opportunities.filter(
+      (item) => item.status === "Offer"
+    ).length,
+    },
+    {
       title: "Success Rate",
       value: `${successRate}%`,
     },
