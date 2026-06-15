@@ -42,7 +42,7 @@ function AddOpportunityModal({
     e.preventDefault();
 
     onAdd({
-      id: Date.now(),
+      id: existingData?.id || Date.now(),
       ...formData,
     });
 

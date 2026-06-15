@@ -11,10 +11,10 @@ function Opportunities() {
         return saved ? JSON.parse(saved) : opportunities;
     });
     
-     const [isModalOpen, setIsModalOpen] =
+  const [isModalOpen, setIsModalOpen] =
     useState(false);
 
-    const [searchTerm, setSearchTerm] =
+  const [searchTerm, setSearchTerm] =
      useState("");
 
     useEffect(() => {
@@ -23,12 +23,12 @@ function Opportunities() {
 
   const filteredOpportunities =
   opportunitiesList.filter((item) =>
-    `${item.title} ${item.organization} ${item.category}`
+    `${item.title} ${item.organization} ${item.category} ${item.notes|| ""}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
 
-    const wishlist = filteredOpportunities.filter(
+  const wishlist = filteredOpportunities.filter(
     (item) => item.status === "Wishlist"
   );
 
@@ -91,8 +91,10 @@ function Opportunities() {
 
   setOpportunitiesList(updated);
   };
+
   const [editingOpportunity, setEditingOpportunity] =
   useState(null);
+
   const handleEditOpportunity = (updatedOpportunity) => {
   const updated =
     opportunitiesList.map((item) =>
@@ -103,19 +105,19 @@ function Opportunities() {
 
   setOpportunitiesList(updated);
   setEditingOpportunity(null);
-};
+  };
 
-    const openEditModal = (opportunity) => {
+  const openEditModal = (opportunity) => {
     setEditingOpportunity(opportunity);
     setIsModalOpen(true);
     };
 
-    const completed =
+  const completed =
   filteredOpportunities.filter(
     (item) => item.status === "Completed"
   );
 
-    const rejected =
+  const rejected =
   filteredOpportunities.filter(
     (item) => item.status === "Rejected"
   );    
@@ -126,6 +128,8 @@ function Opportunities() {
   const openDetails = (opportunity) => {
   setSelectedOpportunity(opportunity);
   };
+
+  
 return (
   <AppLayout>
     <div className="flex justify-between items-center mb-10">

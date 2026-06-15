@@ -6,33 +6,20 @@ function KanbanColumn({
   onDelete,
   onMove,
   onEdit,
-  onView
+  onView,
 }) {
   return (
     <div
       className="
-      bg-white
-        backdrop-blur-sm
-        border
-        border-black/5
-        shadow-sm
+      bg-gray-50
       rounded-3xl
       p-4
       min-h-[500px]
       "
     >
-      <h3
-  className="mb-5 text-lg"
-  style={{
-    fontFamily: "Outfit",
-    fontWeight: 600,
-  }}
->
-        {title}
-        <span className="ml-2 text-gray-400">
-        ({opportunities.length})
-        </span>
-    </h3>
+      <h3 className="font-semibold mb-4">
+        {title} ({opportunities.length})
+      </h3>
 
       {opportunities.map((item) => (
         <OpportunityCard

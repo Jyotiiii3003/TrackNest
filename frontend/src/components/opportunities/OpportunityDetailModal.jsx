@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 function OpportunityDetailModal({
   isOpen,
   onClose,
@@ -7,27 +9,61 @@ function OpportunityDetailModal({
     return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex justify-end z-50">
-      <div
+    <div
+      className="
+      fixed
+      inset-0
+      bg-black/50
+      backdrop-blur-sm
+      flex
+      justify-center
+      items-center
+      z-50
+      "
+    >
+      <motion.div
+        initial={{
+          scale: 0.8,
+          opacity: 0,
+          y: 30,
+        }}
+        animate={{
+          scale: 1,
+          opacity: 1,
+          y: 0,
+        }}
+        exit={{
+          scale: 0.8,
+          opacity: 0,
+          y: 30,
+        }}
+        transition={{
+          duration: 0.3,
+        }}
         className="
-        w-[500px]
-        h-full
         bg-white
+        rounded-3xl
         p-8
+        w-[600px]
         shadow-xl
-        overflow-y-auto
         "
       >
         <div className="flex justify-between items-center mb-8">
-          <h2
-            className="text-3xl"
-            style={{
-              fontFamily: "Outfit",
-              fontWeight: 600,
-            }}
-          >
-            Opportunity Details
-          </h2>
+          <div>
+            <h2
+              className="text-3xl"
+              style={{
+                fontFamily: "Outfit",
+                fontWeight: 600,
+              }}
+            >
+              {opportunity.title}
+            </h2>
+
+            <p className="text-gray-500 mt-1">
+              {opportunity.organization}
+            </p>
+          </div>
 
           <button
             onClick={onClose}
@@ -38,77 +74,71 @@ function OpportunityDetailModal({
         </div>
 
         <div className="space-y-6">
-
           <div>
-            <p className="text-sm text-gray-400">
-              Title
-            </p>
-            <h3 className="text-xl font-medium">
-              {opportunity.title}
+            <h3 className="font-semibold mb-2">
+              Application Info
             </h3>
-          </div>
 
-          <div>
-            <p className="text-sm text-gray-400">
-              Organization
-            </p>
-            <h3>{opportunity.organization}</h3>
-          </div>
-
-          <div>
-            <p className="text-sm text-gray-400">
-              Resume Used
-            </p>
-            <h3>
-              {opportunity.resumeName || "N/A"}
-            </h3>
-          </div>
-
-          <div>
-            <p className="text-sm text-gray-400">
-              Cover Letter
-            </p>
-            <h3>
-              {opportunity.coverLetterName || "N/A"}
-            </h3>
-          </div>
-
-          <div>
-            <p className="text-sm text-gray-400">
-              Notes
-            </p>
             <p>
-              {opportunity.notes || "No notes"}
+              Status: {opportunity.status}
+            </p>
+
+            <p>
+              Deadline:{" "}
+              {new Date(
+                opportunity.deadline
+              ).toLocaleDateString(
+                "en-IN",
+                {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                }
+              )}
             </p>
           </div>
 
           <div>
-            <p className="text-sm text-gray-400">
+            <h3 className="font-semibold mb-2">
+              Documents
+            </h3>
+
+            <p>
+              Resume:{" "}
+              {opportunity.resumeName ||
+                "N/A"}
+            </p>
+
+            <p>
+              Cover Letter:{" "}
+              {opportunity.coverLetterName ||
+                "N/A"}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">
+              Notes
+            </h3>
+
+            <div className="bg-gray-50 p-4 rounded-2xl">
+              {opportunity.notes ||
+                "No notes"}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">
               Reminder
-            </p>
-            <h3>
+            </h3>
+
+            <p>
               {opportunity.reminderDays} day(s)
-            </h3>
-          </div>
-
-          <div>
-            <p className="text-sm text-gray-400">
-              Deadline
+              before
             </p>
-            <h3>
-              {opportunity.deadline}
-            </h3>
           </div>
-
-          <div>
-            <p className="text-sm text-gray-400">
-              Status
-            </p>
-            <h3>{opportunity.status}</h3>
-          </div>
-
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
