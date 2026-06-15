@@ -21,12 +21,49 @@ function Opportunities() {
         localStorage.setItem("opportunities", JSON.stringify(opportunitiesList));
     }, [opportunitiesList]);
 
+
+  const [selectedCategory, setSelectedCategory] =
+  useState("");
+
+  const [selectedStatus, setSelectedStatus] =
+  useState("");
+
+  const [sortOrder, setSortOrder] =
+  useState(""); 
   const filteredOpportunities =
-  opportunitiesList.filter((item) =>
-    `${item.title} ${item.organization} ${item.category} ${item.notes|| ""}`
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
+  opportunitiesList
+    .filter((item) =>
+      `${item.title} ${item.organization} ${item.category} ${item.notes || ""}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    )
+    .filter((item) =>
+      selectedCategory
+        ? item.category === selectedCategory
+        : true
+    )
+    .filter((item) =>
+      selectedStatus
+        ? item.status === selectedStatus
+        : true
+    )
+    .sort((a, b) => {
+      if (sortOrder === "nearest") {
+        return (
+          new Date(a.deadline) -
+          new Date(b.deadline)
+        );
+      }
+
+      if (sortOrder === "latest") {
+        return (
+          new Date(b.deadline) -
+          new Date(a.deadline)
+        );
+      }
+
+      return 0;
+    });
 
   const wishlist = filteredOpportunities.filter(
     (item) => item.status === "Wishlist"
@@ -183,6 +220,64 @@ return (
         "
       />
     </div>
+
+
+    <div className="flex gap-4 mb-6 flex-wrap">
+  <select
+    value={selectedCategory}
+    onChange={(e) =>
+      setSelectedCategory(e.target.value)
+    }
+    className="rounded-xl px-4 py-2 border"
+  >
+    <option value="">
+      All Categories
+    </option>
+    <option>Internship</option>
+    <option>Hackathon</option>
+    <option>Scholarship</option>
+    <option>Open Source</option>
+    <option>Competition</option>
+    <option>Event</option>
+  </select>
+
+  <select
+    value={selectedStatus}
+    onChange={(e) =>
+      setSelectedStatus(e.target.value)
+    }
+    className="rounded-xl px-4 py-2 border"
+  >
+    <option value="">
+      All Status
+    </option>
+    <option>Wishlist</option>
+    <option>Applied</option>
+    <option>Interview</option>
+    <option>Offer</option>
+    <option>Completed</option>
+    <option>Rejected</option>
+  </select>
+
+  <select
+    value={sortOrder}
+    onChange={(e) =>
+      setSortOrder(e.target.value)
+    }
+    className="rounded-xl px-4 py-2 border"
+  >
+    <option value="">
+      Sort by Deadline
+    </option>
+    <option value="nearest">
+      Nearest First
+    </option>
+    <option value="latest">
+      Latest First
+    </option>
+  </select>
+</div>
+
 
     {/* Kanban Board */}
     <div className="grid lg:grid-cols-4 gap-6">
