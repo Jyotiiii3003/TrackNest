@@ -65,6 +65,7 @@ function Opportunities() {
     "Applied",
     "Interview",
     "Offer",
+    "Completed",
   ];
 
   const updated =
@@ -108,6 +109,17 @@ function Opportunities() {
     setEditingOpportunity(opportunity);
     setIsModalOpen(true);
     };
+
+    const completed =
+  filteredOpportunities.filter(
+    (item) => item.status === "Completed"
+  );
+
+    const rejected =
+  filteredOpportunities.filter(
+    (item) => item.status === "Rejected"
+  );    
+
 
 return (
   <AppLayout>
@@ -192,6 +204,22 @@ return (
       <KanbanColumn
         title="Offer"
         opportunities={offer}
+        onDelete={handleDeleteOpportunity}
+        onMove={handleMoveOpportunity}
+        onEdit={openEditModal}
+      />
+
+      <KanbanColumn
+        title="Completed"
+        opportunities={completed}
+        onDelete={handleDeleteOpportunity}
+        onMove={handleMoveOpportunity}
+        onEdit={openEditModal}
+      />
+
+      <KanbanColumn
+        title="Rejected"
+        opportunities={rejected}
         onDelete={handleDeleteOpportunity}
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}

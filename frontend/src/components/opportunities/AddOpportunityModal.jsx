@@ -151,6 +151,8 @@ function AddOpportunityModal({
             <option>Applied</option>
             <option>Interview</option>
             <option>Offer</option>
+            <option>Rejected</option>
+            <option>Accepted</option>
           </select>
 
           <input
