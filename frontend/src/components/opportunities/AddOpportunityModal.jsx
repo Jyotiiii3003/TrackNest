@@ -20,7 +20,9 @@ function AddOpportunityModal({
     importantLinks: "",
     referralContact: "",
     strategyNotes: "",
-    prepNotes: ""
+    prepNotes: "",
+    followUpDate: "",
+    folloUpStatus: ""
   }
 );
 
@@ -39,7 +41,9 @@ function AddOpportunityModal({
       importantLinks: "",
       referralContact: "",
       strategyNotes: "",
-      prepNotes: ""
+      prepNotes: "",
+      followUpDate: "",
+      followUpStatus: ""
     }
   );
 }, [existingData]);
@@ -213,6 +217,35 @@ function AddOpportunityModal({
             })
             }
           />
+
+          <input
+          type="date"
+          className="w-full border rounded-xl p-3"
+          value={formData.followUpDate}
+          onChange={(e) =>
+            setFormData({
+            ...formData,
+            followUpDate: e.target.value,
+            })
+          }
+          />
+
+          <select
+            className="w-full border rounded-xl p-3"
+            value={formData.followUpStatus}
+            onChange={(e) =>
+              setFormData({
+              ...formData,
+              followUpStatus: e.target.value,
+            })
+          }
+          >
+          <option>Pending</option>
+          <option>Done</option>
+          <option>Skipped</option>
+          <option>Responded</option>
+        </select>
+
           <select
               className="w-full border rounded-xl p-3"
               value={formData.category}

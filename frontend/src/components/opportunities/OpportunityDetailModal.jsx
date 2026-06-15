@@ -167,6 +167,21 @@ function OpportunityDetailModal({
                 </div>
             </div>
 
+            <div>
+                 <h3 className="font-semibold mb-2">
+                    Follow-up Tracker
+                </h3>
+
+                <p>
+                 Date: {opportunity.followUpDate || "Not set"}
+                 </p>
+
+                <p>
+                     Status: {opportunity.followUpStatus}
+                </p>
+            </div>
+
+
           <div>
             <h3 className="font-semibold mb-2">
               Reminder
