@@ -37,14 +37,32 @@ function OpportunityCard({ opportunity,onDelete,onMove,onEdit }) {
       </h3>
 
      <p
-  className="text-md mt-1 text-gray-500"
-  style={{
-    fontFamily: "Inter",
-  }}
->
+        className="text-md mt-1 text-gray-500"
+        style={{
+        fontFamily: "Inter",
+        }}
+        >
         {opportunity.organization}
       </p>
 
+        {opportunity.resumeName && (
+          <p className="text-xs text-gray-400 mt-2">
+           Resume: {opportunity.resumeName}
+        </p>
+        )}
+
+        {opportunity.coverLetterName && (
+        <p className="text-xs text-gray-400 mt-1">
+          Cover: {opportunity.coverLetterName}
+        </p>
+        )}
+
+        {opportunity.notes && (
+          <p className="text-xs text-gray-500 mt-2 line-clamp-2">
+          {opportunity.notes}
+        </p>
+        )}
+        
         <p className="text-xs text-gray-400 mt-2">
         Reminder: {opportunity.reminderDays} day(s) before
         </p>

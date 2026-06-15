@@ -13,7 +13,10 @@ function AddOpportunityModal({
     category: "Internship",
     status: "Wishlist",
     deadline: "",
-    reminderDays:3
+    reminderDays:3,
+    resumeName: "",
+    coverLetterName: "",
+    notes: "",
   }
 );
 
@@ -25,7 +28,10 @@ function AddOpportunityModal({
       category: "Internship",
       status: "Wishlist",
       deadline: "",
-      reminderDays: 3
+      reminderDays: 3,
+      resumeName: "",
+      coverLetterName: "",
+      notes: "",
     }
   );
 }, [existingData]);
@@ -92,6 +98,45 @@ function AddOpportunityModal({
             required
           />
 
+          <input
+            type="text"
+            placeholder="Resume Used (e.g. resume-google-v2.pdf)"
+            className="w-full border rounded-xl p-3"
+            value={formData.resumeName}
+            onChange={(e) =>
+            setFormData({
+              ...formData,
+              resumeName: e.target.value,
+            })
+            }
+          />
+          
+          <input
+            type="text"
+            placeholder="Cover Letter Used"
+            className="w-full border rounded-xl p-3"
+            value={formData.coverLetterName}
+            onChange={(e) =>
+            setFormData({
+            ...formData,
+            coverLetterName: e.target.value,
+           })
+            }
+          />
+
+          <textarea
+            placeholder="Notes (referral, strategy, important links...)"
+            className="w-full border rounded-xl p-3"
+            rows="4"
+            value={formData.notes}
+            onChange={(e) =>
+            setFormData({
+            ...formData,
+            notes: e.target.value,
+            })
+            }
+          />
+
           <select
               className="w-full border rounded-xl p-3"
               value={formData.category}
@@ -152,7 +197,7 @@ function AddOpportunityModal({
             <option>Interview</option>
             <option>Offer</option>
             <option>Rejected</option>
-            <option>Accepted</option>
+            <option>Completed</option>
           </select>
 
           <input
