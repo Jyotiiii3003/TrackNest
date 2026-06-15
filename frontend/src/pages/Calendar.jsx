@@ -21,6 +21,46 @@ function Calendar() {
         new Date(b.deadline)
     );
 
+    const getDeadlineStatus = (deadline) => {
+  const today = new Date();
+  const dueDate = new Date(deadline);
+
+  const diffTime =
+    dueDate - today;
+
+  const diffDays = Math.ceil(
+    diffTime /
+      (1000 * 60 * 60 * 24)
+  );
+
+  if (diffDays < 0) {
+    return {
+      label: "Overdue",
+      color: "text-red-500",
+    };
+  }
+
+  if (diffDays === 0) {
+    return {
+      label: "Today",
+      color: "text-orange-500",
+    };
+  }
+
+  if (diffDays === 1) {
+    return {
+      label: "Tomorrow",
+      color: "text-yellow-500",
+    };
+  }
+
+  return {
+    label: `${diffDays} days left`,
+    color: "text-green-500",
+  };
+};
+
+
   return (
     <AppLayout>
       <div className="space-y-10">
@@ -43,8 +83,12 @@ function Calendar() {
 
         <div className="space-y-4">
 
-          {sortedDeadlines.map((item) => (
-            <div
+          {sortedDeadlines.map((item) => {
+             const status =
+             getDeadlineStatus(item.deadline);
+
+            return (
+              <div
               key={item.id}
               className="
               bg-white
@@ -55,42 +99,45 @@ function Calendar() {
               justify-between
               items-center
               "
-            >
-              <div>
-                <h3
-                  className="text-xl"
-                  style={{
-                    fontFamily: "Outfit",
-                    fontWeight: 600,
-                  }}
-                >
-                  {item.title}
-                </h3>
-
-                <p className="text-gray-500 mt-1">
-                  {item.organization}
-                </p>
-              </div>
-
-              <div
-                className="
-                text-right
-                "
               >
-                <p className="text-lg font-medium">
-                  {new Date(
-                    item.deadline
-                  ).toLocaleDateString(
-                    "en-IN",
-                    {
-                      day: "numeric",
-                      month: "short",
-                    }
-                  )}
-                </p>
-              </div>
+            <div>
+             <h3
+                className="text-xl"
+                style={{
+                 fontFamily: "Outfit",
+                 fontWeight: 600,
+                }}
+              >
+                {item.title}
+              </h3>
+
+              <p className="text-gray-500 mt-1">
+              {item.organization}
+              </p>
             </div>
-          ))}
+
+            <div className="text-right">
+            <p className="text-lg font-medium">
+                {new Date(
+                item.deadline
+                ).toLocaleDateString(
+                "en-IN",
+                {
+                  day: "numeric",
+                  month: "short",
+                }
+              )}
+            </p>
+
+              <p
+                className={`text-sm mt-1 ${status.color}`}
+              >
+                {status.label}
+              </p>
+            </div>
+          </div>
+        );
+        })}
 
         </div>
       </div>
