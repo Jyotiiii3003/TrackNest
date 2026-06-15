@@ -99,30 +99,42 @@ function AddOpportunityModal({
           />
 
           <input
-            type="text"
-            placeholder="Resume Used (e.g. resume-google-v2.pdf)"
+            type="file"
+            accept=".pdf,.doc,.docx"
             className="w-full border rounded-xl p-3"
-            value={formData.resumeName}
             onChange={(e) =>
-            setFormData({
+              setFormData({
               ...formData,
-              resumeName: e.target.value,
+              resumeName:
+              e.target.files[0]?.name || "",
             })
             }
           />
-          
+          {formData.resumeName && (
+          <p className="text-sm text-gray-400">
+          Selected: {formData.resumeName}
+          </p>
+          )}
+
+
           <input
-            type="text"
-            placeholder="Cover Letter Used"
-            className="w-full border rounded-xl p-3"
-            value={formData.coverLetterName}
-            onChange={(e) =>
+          type="file"
+          accept=".pdf,.doc,.docx"
+          className="w-full border rounded-xl p-3"
+          onChange={(e) =>
             setFormData({
             ...formData,
-            coverLetterName: e.target.value,
-           })
-            }
+            coverLetterName:
+            e.target.files[0]?.name || "",
+          })
+          }
           />
+          {formData.coverLetterName && (
+          <p className="text-sm text-gray-400">
+          Selected: {formData.coverLetterName}
+          </p>
+          )}
+
 
           <textarea
             placeholder="Notes (referral, strategy, important links...)"
