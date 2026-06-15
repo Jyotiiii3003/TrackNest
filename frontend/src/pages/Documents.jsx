@@ -19,28 +19,41 @@ function Documents() {
     setOpportunities(saved);
   }, []);
 
-  // Resume Library
-  const resumes =
-    opportunities.filter(
-      (item) =>
-        item.resumeName &&
-        item.resumeName
+  const groupDocuments = (type) => {
+    const grouped = {};
+
+    opportunities.forEach((item) => {
+      const docName = item[type];
+
+      if (!docName) return;
+
+      if (!grouped[docName]) {
+        grouped[docName] = [];
+      }
+
+      grouped[docName].push({
+        title: item.title,
+        organization:
+          item.organization,
+      });
+    });
+
+    return Object.entries(grouped).filter(
+      ([docName]) =>
+        docName
           .toLowerCase()
           .includes(
             searchTerm.toLowerCase()
           )
     );
+  };
 
-  // Cover Letter Library
+  const resumes =
+    groupDocuments("resumeName");
+
   const covers =
-    opportunities.filter(
-      (item) =>
-        item.coverLetterName &&
-        item.coverLetterName
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase()
-          )
+    groupDocuments(
+      "coverLetterName"
     );
 
   return (
@@ -58,9 +71,8 @@ function Documents() {
           </h1>
 
           <p className="text-gray-500 mt-3 text-lg">
-            Manage all resumes and
-            cover letters used in your
-            applications.
+            Your application document
+            vault.
           </p>
         </div>
 
@@ -88,77 +100,107 @@ function Documents() {
           "
         />
 
-        {/* Resume Section */}
+        {/* Resume Library */}
         <div>
           <h2 className="text-2xl font-semibold mb-5">
             Resume Library
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {resumes.map((item) => (
-              <div
-                key={item.id}
-                className="
-                bg-white
-                rounded-3xl
-                p-5
-                shadow-sm
-                "
-              >
-                <h3 className="font-semibold text-lg">
-                  {item.resumeName}
-                </h3>
+            {resumes.map(
+              ([name, usage]) => (
+                <div
+                  key={name}
+                  className="
+                  bg-white
+                  rounded-3xl
+                  p-5
+                  shadow-sm
+                  "
+                >
+                  <h3 className="font-semibold text-lg">
+                    {name}
+                  </h3>
 
-                <p className="text-gray-500 mt-2">
-                  Used for:{" "}
-                  {item.title}
-                </p>
+                  <p className="text-gray-500 mt-2">
+                    Used in{" "}
+                    {usage.length}{" "}
+                    application(s)
+                  </p>
 
-                <p className="text-sm text-gray-400 mt-1">
-                  {
-                    item.organization
-                  }
-                </p>
-              </div>
-            ))}
+                  <div className="mt-3 space-y-2">
+                    {usage.map(
+                      (
+                        app,
+                        index
+                      ) => (
+                        <p
+                          key={index}
+                          className="text-sm text-gray-400"
+                        >
+                          {app.title} •{" "}
+                          {
+                            app.organization
+                          }
+                        </p>
+                      )
+                    )}
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
 
-        {/* Cover Letter Section */}
+        {/* Cover Library */}
         <div>
           <h2 className="text-2xl font-semibold mb-5">
             Cover Letter Library
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {covers.map((item) => (
-              <div
-                key={item.id}
-                className="
-                bg-white
-                rounded-3xl
-                p-5
-                shadow-sm
-                "
-              >
-                <h3 className="font-semibold text-lg">
-                  {
-                    item.coverLetterName
-                  }
-                </h3>
+            {covers.map(
+              ([name, usage]) => (
+                <div
+                  key={name}
+                  className="
+                  bg-white
+                  rounded-3xl
+                  p-5
+                  shadow-sm
+                  "
+                >
+                  <h3 className="font-semibold text-lg">
+                    {name}
+                  </h3>
 
-                <p className="text-gray-500 mt-2">
-                  Used for:{" "}
-                  {item.title}
-                </p>
+                  <p className="text-gray-500 mt-2">
+                    Used in{" "}
+                    {usage.length}{" "}
+                    application(s)
+                  </p>
 
-                <p className="text-sm text-gray-400 mt-1">
-                  {
-                    item.organization
-                  }
-                </p>
-              </div>
-            ))}
+                  <div className="mt-3 space-y-2">
+                    {usage.map(
+                      (
+                        app,
+                        index
+                      ) => (
+                        <p
+                          key={index}
+                          className="text-sm text-gray-400"
+                        >
+                          {app.title} •{" "}
+                          {
+                            app.organization
+                          }
+                        </p>
+                      )
+                    )}
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>
