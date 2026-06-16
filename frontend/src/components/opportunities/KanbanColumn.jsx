@@ -21,16 +21,32 @@ function KanbanColumn({
         {title} ({opportunities.length})
       </h3>
 
-      {opportunities.map((item) => (
+      {opportunities.length > 0 ? (
+         opportunities.map((opportunity) => (
         <OpportunityCard
-          key={item.id}
-          opportunity={item}
-          onDelete={onDelete}
-          onMove={onMove}
-          onEdit={onEdit}
-          onView={onView}
-        />
-      ))}
+      key={opportunity.id}
+      opportunity={opportunity}
+      onDelete={onDelete}
+      onMove={onMove}
+      onEdit={onEdit}
+      onView={onView}
+    />
+  ))
+      ) : (
+  <div
+    className="
+    bg-white
+    rounded-2xl
+    p-5
+    text-center
+    text-gray-400
+    text-sm
+    mt-3
+    "
+  >
+    No opportunities here yet.
+  </div>
+)}
     </div>
   );
 }

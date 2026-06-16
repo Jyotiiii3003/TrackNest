@@ -153,9 +153,30 @@ function Dashboard() {
             today.
           </p>
         </div>
+            {opportunities.length === 0 && (
+            <div
+              className="
+              bg-white
+              rounded-3xl
+              p-8
+              text-center
+              shadow-sm
+              "
+            >
+            <h2 className="text-2xl font-semibold">
+              No opportunities yet
+            </h2>
 
+            <p className="text-gray-500 mt-2">
+                  Start tracking your first
+                  opportunity to unlock
+                  analytics.
+            </p>
+            </div>
+            )}
         {/* Stats */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+        {opportunities.length > 0 && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat) => (
             <StatCard
               key={stat.title}
@@ -163,7 +184,7 @@ function Dashboard() {
               value={stat.value}
             />
           ))}
-        </div>
+        </div>)}
 
         {/* Widgets */}
         <div className="grid lg:grid-cols-2 gap-6">

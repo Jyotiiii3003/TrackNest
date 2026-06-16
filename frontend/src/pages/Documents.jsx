@@ -76,7 +76,6 @@ function Documents() {
           </p>
         </div>
 
-        {/* Search */}
         <input
           type="text"
           placeholder="Search documents..."
@@ -106,50 +105,63 @@ function Documents() {
             Resume Library
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {resumes.map(
-              ([name, usage]) => (
-                <div
-                  key={name}
-                  className="
-                  bg-white
-                  rounded-3xl
-                  p-5
-                  shadow-sm
-                  "
-                >
-                  <h3 className="font-semibold text-lg">
-                    {name}
-                  </h3>
+          {resumes.length > 0 ? (
+            <div className="grid md:grid-cols-2 gap-6">
+              {resumes.map(
+                ([name, usage]) => (
+                  <div
+                    key={name}
+                    className="
+                    bg-white
+                    rounded-3xl
+                    p-5
+                    shadow-sm
+                    "
+                  >
+                    <h3 className="font-semibold text-lg">
+                      {name}
+                    </h3>
 
-                  <p className="text-gray-500 mt-2">
-                    Used in{" "}
-                    {usage.length}{" "}
-                    application(s)
-                  </p>
+                    <p className="text-gray-500 mt-2">
+                      Used in{" "}
+                      {usage.length}{" "}
+                      application(s)
+                    </p>
 
-                  <div className="mt-3 space-y-2">
-                    {usage.map(
-                      (
-                        app,
-                        index
-                      ) => (
-                        <p
-                          key={index}
-                          className="text-sm text-gray-400"
-                        >
-                          {app.title} •{" "}
-                          {
-                            app.organization
-                          }
-                        </p>
-                      )
-                    )}
+                    <div className="mt-3 space-y-2">
+                      {usage.map(
+                        (
+                          app,
+                          index
+                        ) => (
+                          <p
+                            key={index}
+                            className="text-sm text-gray-400"
+                          >
+                            {app.title} •{" "}
+                            {
+                              app.organization
+                            }
+                          </p>
+                        )
+                      )}
+                    </div>
                   </div>
-                </div>
-              )
-            )}
-          </div>
+                )
+              )}
+            </div>
+          ) : (
+            <div
+              className="
+              bg-white
+              rounded-2xl
+              p-5
+              text-gray-400
+              "
+            >
+              No resumes uploaded yet.
+            </div>
+          )}
         </div>
 
         {/* Cover Library */}
@@ -158,50 +170,63 @@ function Documents() {
             Cover Letter Library
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {covers.map(
-              ([name, usage]) => (
-                <div
-                  key={name}
-                  className="
-                  bg-white
-                  rounded-3xl
-                  p-5
-                  shadow-sm
-                  "
-                >
-                  <h3 className="font-semibold text-lg">
-                    {name}
-                  </h3>
+          {covers.length > 0 ? (
+            <div className="grid md:grid-cols-2 gap-6">
+              {covers.map(
+                ([name, usage]) => (
+                  <div
+                    key={name}
+                    className="
+                    bg-white
+                    rounded-3xl
+                    p-5
+                    shadow-sm
+                    "
+                  >
+                    <h3 className="font-semibold text-lg">
+                      {name}
+                    </h3>
 
-                  <p className="text-gray-500 mt-2">
-                    Used in{" "}
-                    {usage.length}{" "}
-                    application(s)
-                  </p>
+                    <p className="text-gray-500 mt-2">
+                      Used in{" "}
+                      {usage.length}{" "}
+                      application(s)
+                    </p>
 
-                  <div className="mt-3 space-y-2">
-                    {usage.map(
-                      (
-                        app,
-                        index
-                      ) => (
-                        <p
-                          key={index}
-                          className="text-sm text-gray-400"
-                        >
-                          {app.title} •{" "}
-                          {
-                            app.organization
-                          }
-                        </p>
-                      )
-                    )}
+                    <div className="mt-3 space-y-2">
+                      {usage.map(
+                        (
+                          app,
+                          index
+                        ) => (
+                          <p
+                            key={index}
+                            className="text-sm text-gray-400"
+                          >
+                            {app.title} •{" "}
+                            {
+                              app.organization
+                            }
+                          </p>
+                        )
+                      )}
+                    </div>
                   </div>
-                </div>
-              )
-            )}
-          </div>
+                )
+              )}
+            </div>
+          ) : (
+            <div
+              className="
+              bg-white
+              rounded-2xl
+              p-5
+              text-gray-400
+              "
+            >
+              No cover letters uploaded yet.
+            </div>
+          )}
         </div>
       </div>
     </AppLayout>
