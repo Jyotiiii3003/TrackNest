@@ -31,9 +31,9 @@ function Login() {
         JSON.stringify(data.user)
       );
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   };
 

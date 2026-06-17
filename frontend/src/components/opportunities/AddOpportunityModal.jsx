@@ -1,5 +1,5 @@
 import { useState,useEffect} from "react";
-
+import { uploadFile } from "../../services/uploadService";
 function AddOpportunityModal({
   isOpen,
   onClose,
@@ -15,7 +15,9 @@ function AddOpportunityModal({
     deadline: "",
     reminderDays:3,
     resumeName: "",
+    resumeURL:"",
     coverLetterName: "",
+    coverLetterURL:"",
     notes: "",
     importantLinks: "",
     referralContact: "",
@@ -36,7 +38,9 @@ function AddOpportunityModal({
       deadline: "",
       reminderDays: 3,
       resumeName: "",
+      resumeURL: "",
       coverLetterName: "",
+      coverLetterURL: "",
       notes: "",
       importantLinks: "",
       referralContact: "",
@@ -120,13 +124,27 @@ function AddOpportunityModal({
             type="file"
             accept=".pdf,.doc,.docx"
             className="w-full border rounded-xl p-3"
-            onChange={(e) =>
-              setFormData({
-              ...formData,
-              resumeName:
-              e.target.files[0]?.name || "",
-            })
-            }
+            onChange={async (e) => {
+              const file =
+              e.target.files[0];
+
+              if (!file) return;
+
+              try {
+              const uploaded =
+                await uploadFile(file);
+
+                setFormData({
+                ...formData,
+                resumeName:
+                uploaded.originalName,
+                resumeUrl:
+                 uploaded.url,
+                });
+               } catch (error) {
+              console.log(error);
+                }
+              }}
           />
           {formData.resumeName && (
           <p className="text-sm text-gray-400">
@@ -139,13 +157,27 @@ function AddOpportunityModal({
           type="file"
           accept=".pdf,.doc,.docx"
           className="w-full border rounded-xl p-3"
-          onChange={(e) =>
+          onChange={async (e) => {
+            const file =
+            e.target.files[0];
+
+            if (!file) return;
+
+            try {
+            const uploaded =
+            await uploadFile(file);
+
             setFormData({
             ...formData,
             coverLetterName:
-            e.target.files[0]?.name || "",
-          })
-          }
+              uploaded.originalName,
+            coverLetterUrl:
+              uploaded.url,
+            });
+            } catch (error) {
+              console.log(error);
+           }
+          }}
           />
           {formData.coverLetterName && (
           <p className="text-sm text-gray-400">

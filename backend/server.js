@@ -52,3 +52,10 @@ app.listen(PORT, () => {
     `Server running on port ${PORT}`
   );
 });
+
+const uploadRoutes =
+  require("./routes/uploadRoutes");
+app.use(
+  "/api/upload",
+  uploadRoutes
+);

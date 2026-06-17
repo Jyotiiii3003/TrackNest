@@ -1,20 +1,20 @@
 import Navbar from "../components/Navbar";
 import ProductShowcase from "../components/ProductShowcase";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-6">
-
         <section className="min-h-[75vh] flex items-center">
-
           <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
 
             {/* Left Content */}
             <div>
-
               <p className="uppercase tracking-[0.3em] text-xs text-gray-500 mb-8">
                 Student Opportunity CRM
               </p>
@@ -42,26 +42,27 @@ function Home() {
               </p>
 
               <div className="flex gap-4 mt-10">
-
-                <button className="px-6 py-3 rounded-full bg-black text-white">
+                <button
+                  onClick={() => navigate("/register")}
+                  className="px-6 py-3 rounded-full bg-black text-white"
+                >
                   Start Tracking
                 </button>
 
-                <button className="px-6 py-3 rounded-full border">
-                  View Demo
+                <button
+                  onClick={() => navigate("/login")}
+                  className="px-6 py-3 rounded-full border"
+                >
+                  Sign In
                 </button>
-
               </div>
-
             </div>
 
             {/* Right Side */}
             <div className="relative">
-
               <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#C7B8EA] blur-3xl opacity-30"></div>
 
               <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
-
                 <div className="flex justify-between items-center mb-8">
                   <h3 className="font-semibold">
                     Dashboard
@@ -73,7 +74,6 @@ function Home() {
                 </div>
 
                 <div className="space-y-4">
-
                   <div className="border rounded-2xl p-4">
                     <p className="text-sm text-gray-500">
                       Applications
@@ -90,7 +90,6 @@ function Home() {
                     </p>
 
                     <div className="mt-3 space-y-2">
-
                       <div className="flex justify-between">
                         <span>Google SWE</span>
                         <span>Tomorrow</span>
@@ -100,12 +99,10 @@ function Home() {
                         <span>GSSoC</span>
                         <span>3 Days</span>
                       </div>
-
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-
                     <div className="rounded-2xl p-4 bg-[#EAD7D1]">
                       <p>Interviews</p>
                       <h3 className="text-2xl font-bold">
@@ -119,19 +116,13 @@ function Home() {
                         2
                       </h3>
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
             </div>
 
           </div>
-
         </section>
-
       </main>
 
       <ProductShowcase />

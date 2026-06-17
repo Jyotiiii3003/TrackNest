@@ -1,42 +1,92 @@
+import { useNavigate } from "react-router-dom";
+
 function Navbar() {
+  const navigate = useNavigate();
+
+  const token =
+    localStorage.getItem("token");
+
   return (
-    <header className="sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-6 py-5">
-        <div className="bg-white/70 backdrop-blur-xl border border-black/5 rounded-full px-6 py-4 flex items-center justify-between">
+    <header
+      className="
+      w-full
+      border-b
+      border-black/5
+      bg-[#faf8f5]
+      "
+    >
+      <div
+        className="
+        max-w-7xl
+        mx-auto
+        px-6
+        py-5
+        flex
+        items-center
+        justify-between
+        "
+      >
+        {/* Logo */}
+        <h1
+          className="text-2xl font-bold"
+          style={{
+            fontFamily: "Outfit",
+          }}
+        >
+          TrackNest
+        </h1>
 
-          {/* Logo */}
-          <div>
-            <h1
-              className="text-xl font-bold tracking-tight"
-              style={{ fontFamily: "Outfit" }}
+        {/* Right Side */}
+        <div className="flex items-center gap-4">
+          {token ? (
+            <button
+              onClick={() =>
+                navigate("/dashboard")
+              }
+              className="
+              px-5
+              py-2
+              rounded-full
+              bg-black
+              text-white
+              "
             >
-             TrackNest
-            </h1>
-          </div>
-
-          {/* Nav Links */}
-          <div className="hidden md:flex gap-8 text-sm">
-            <a href="#">Features</a>
-            <a href="#">Dashboard</a>
-            <a href="#">Roadmap</a>
-            <a href="#">About</a>
-          </div>
-
-          {/* Actions */}
-          <div className="flex items-center gap-3">
-
-            <button className="text-sm">
-              Sign In
+              Dashboard
             </button>
+          ) : (
+            <>
+              <button
+                onClick={() =>
+                  navigate("/login")
+                }
+                className="
+                px-5
+                py-2
+                rounded-full
+                border
+                "
+              >
+                Sign In
+              </button>
 
-            <button className="px-4 py-2 rounded-full bg-black text-white text-sm">
-              Get Started
-            </button>
-
-          </div>
-
+              <button
+                onClick={() =>
+                  navigate("/register")
+                }
+                className="
+                px-5
+                py-2
+                rounded-full
+                bg-black
+                text-white
+                "
+              >
+                Get Started
+              </button>
+            </>
+          )}
         </div>
-      </nav>
+      </div>
     </header>
   );
 }
