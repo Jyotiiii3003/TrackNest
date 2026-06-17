@@ -2,6 +2,8 @@ const express = require("express");
 const {
   createOpportunity,
   getOpportunities,
+  updateOpportunity,
+    deleteOpportunity,
 } = require(
   "../controllers/opportunityController"
 );
@@ -22,6 +24,18 @@ router.get(
   "/",
   protect,
   getOpportunities
+);
+
+router.put(
+  "/:id",
+  protect,
+  updateOpportunity
+);
+
+router.delete(
+  "/:id",
+  protect,
+  deleteOpportunity
 );
 
 module.exports = router;
