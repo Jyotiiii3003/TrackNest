@@ -10,6 +10,19 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const protect =
+  require("./middleware/authMiddleware");
+app.get(
+  "/api/protected",
+  protect,
+  (req, res) => {
+    res.json({
+      message:
+        "Protected route accessed",
+      user: req.user,
+    });
+  }
+);
 
 app.use(cors());
 app.use(express.json());
