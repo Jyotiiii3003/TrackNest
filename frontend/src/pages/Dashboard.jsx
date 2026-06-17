@@ -4,30 +4,44 @@ import { checkDeadlines } from "../utils/checkDeadlines";
 import { useState, useEffect } from "react";
 import RecentOpportunities from "../components/dashboard/RecentOpportunities";
 import UpcomingDeadlines from "../components/dashboard/UpcomingDeadlines";
+import { getOpportunities } from "../services/opportunityService";
 
 function Dashboard() {
   const [opportunities, setOpportunities] =
     useState([]);
 
+  const fetchDashboardData =
+    async () => {
+      try {
+        const { data } =
+          await getOpportunities();
+
+        setOpportunities(data);
+        checkDeadlines(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
   useEffect(() => {
-    const saved =
-      localStorage.getItem(
-        "opportunities"
-      );
-
-    if (saved) {
-      const parsed =
-        JSON.parse(saved);
-
-      setOpportunities(parsed);
-
-      checkDeadlines(parsed);
-    }
+    fetchDashboardData();
   }, []);
 
   // Analytics
   const total =
     opportunities.length;
+
+  const interviews =
+    opportunities.filter(
+      (item) =>
+        item.status === "Interview"
+    ).length;
+
+  const offers =
+    opportunities.filter(
+      (item) =>
+        item.status === "Offer"
+    ).length;
 
   const completed =
     opportunities.filter(
@@ -81,6 +95,9 @@ function Dashboard() {
   const urgentCount =
     opportunities.filter(
       (item) => {
+        if (!item.deadline)
+          return false;
+
         const diff =
           Math.ceil(
             (new Date(
@@ -106,16 +123,12 @@ function Dashboard() {
       value: total,
     },
     {
-    title: "Interviews",
-    value: opportunities.filter(
-      (item) => item.status === "Interview"
-    ).length,
+      title: "Interviews",
+      value: interviews,
     },
     {
-    title: "Offers",
-    value: opportunities.filter(
-      (item) => item.status === "Offer"
-    ).length,
+      title: "Offers",
+      value: offers,
     },
     {
       title: "Success Rate",
@@ -153,53 +166,59 @@ function Dashboard() {
             today.
           </p>
         </div>
-            {opportunities.length === 0 && (
-            <div
-              className="
-              bg-white
-              rounded-3xl
-              p-8
-              text-center
-              shadow-sm
-              "
-            >
+
+        {/* Empty State */}
+        {opportunities.length === 0 && (
+          <div
+            className="
+            bg-white
+            rounded-3xl
+            p-8
+            text-center
+            shadow-sm
+            "
+          >
             <h2 className="text-2xl font-semibold">
               No opportunities yet
             </h2>
 
             <p className="text-gray-500 mt-2">
-                  Start tracking your first
-                  opportunity to unlock
-                  analytics.
+              Start tracking your
+              first opportunity to
+              unlock analytics.
             </p>
-            </div>
-            )}
+          </div>
+        )}
+
         {/* Stats */}
         {opportunities.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat) => (
-            <StatCard
-              key={stat.title}
-              title={stat.title}
-              value={stat.value}
-            />
-          ))}
-        </div>)}
+            {stats.map((stat) => (
+              <StatCard
+                key={stat.title}
+                title={stat.title}
+                value={stat.value}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Widgets */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          <RecentOpportunities
-            opportunities={
-              opportunities
-            }
-          />
+        {opportunities.length > 0 && (
+          <div className="grid lg:grid-cols-2 gap-6">
+            <RecentOpportunities
+              opportunities={
+                opportunities
+              }
+            />
 
-          <UpcomingDeadlines
-            opportunities={
-              opportunities
-            }
-          />
-        </div>
+            <UpcomingDeadlines
+              opportunities={
+                opportunities
+              }
+            />
+          </div>
+        )}
       </div>
     </AppLayout>
   );

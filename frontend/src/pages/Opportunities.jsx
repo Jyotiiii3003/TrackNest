@@ -132,7 +132,7 @@ function Opportunities() {
       console.log(error);
     }
   };
-  const handleMoveOpportunity = (id) => {
+  const handleMoveOpportunity = async (id) => {
   const statusFlow = [
     "Wishlist",
     "Applied",
@@ -141,38 +141,57 @@ function Opportunities() {
     "Completed",
   ];
 
-  const updated =
-    opportunitiesList.map((item) => {
-      if (item._id === id) {
-        const currentIndex =
-          statusFlow.indexOf(item.status);
+  const currentOpportunity =
+    opportunitiesList.find(
+      (item) => item._id === id
+    );
 
-        if (
-          currentIndex <
-          statusFlow.length - 1
-        ) {
-         return {
-          ...item,
-          status:
-          statusFlow[currentIndex + 1],
-          history: [
-          ...(item.history || []),
-          {
+  if (!currentOpportunity) return;
+
+  const currentIndex =
+    statusFlow.indexOf(
+      currentOpportunity.status
+    );
+
+  if (
+    currentIndex <
+    statusFlow.length - 1
+  ) {
+    const updatedData = {
+      ...currentOpportunity,
+      status:
+        statusFlow[currentIndex + 1],
+      history: [
+        ...(currentOpportunity.history || []),
+        {
           action: `Moved to ${
-          statusFlow[currentIndex + 1]
+            statusFlow[currentIndex + 1]
           }`,
           date: new Date().toLocaleString(),
-           },
-          ],
-          };
-        }
-      }
+        },
+      ],
+    };
 
-      return item;
-    });
+    try {
+      const { data } =
+        await updateOpportunity(
+          id,
+          updatedData
+        );
 
-  setOpportunitiesList(updated);
-  };
+      const updated =
+        opportunitiesList.map((item) =>
+          item._id === data._id
+            ? data
+            : item
+        );
+
+      setOpportunitiesList(updated);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
 
   const [editingOpportunity, setEditingOpportunity] =
   useState(null);
