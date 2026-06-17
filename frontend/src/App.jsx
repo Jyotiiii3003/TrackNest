@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import { Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -11,6 +11,8 @@ import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
 
 function App() {
+  const token =
+  localStorage.getItem("token");
   useEffect(() => {
   if (
     Notification.permission !== "granted"
@@ -27,26 +29,59 @@ function App() {
 
       <Route path="/register" element={<Register />} />
 
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+  path="/"
+  element={
+    token ? (
+      <Dashboard />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+ />
 
       <Route
-        path="/opportunities"
-        element={<Opportunities />}
-      />
+  path="/opportunities"
+  element={
+    token ? (
+      <Opportunities />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
 
       <Route
         path="/calendar"
-        element={<CalendarPage />}
+        element={
+          token ? (
+            <CalendarPage />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
       />
 
       <Route
         path="/documents"
-        element={<Documents />}
+        element={
+          token ? (
+            <Documents />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
       />
 
       <Route
         path="/settings"
-        element={<Settings />}
+        element={
+          token ? (
+            <Settings />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
       />
 
     </Routes>
