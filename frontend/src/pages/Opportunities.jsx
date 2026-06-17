@@ -1,15 +1,17 @@
 import { useState,useEffect } from "react";
 import AppLayout from "../layouts/AppLayout";
 import KanbanColumn from "../components/opportunities/KanbanColumn";
-import { opportunities } from "../data/mockOpportunities";
+import {
+  getOpportunities,
+  createOpportunity,
+  updateOpportunity,
+  deleteOpportunity,
+} from "../services/opportunityService";
 import AddOpportunityModal from "../components/opportunities/AddOpportunityModal";
 import OpportunityDetailModal from "../components/opportunities/OpportunityDetailModal";
 function Opportunities() {
   const [opportunitiesList, setOpportunitiesList] =
-    useState(()=>{
-        const saved= localStorage.getItem("opportunities");
-        return saved ? JSON.parse(saved) : opportunities;
-    });
+  useState([]);
     
   const [isModalOpen, setIsModalOpen] =
     useState(false);
@@ -17,9 +19,22 @@ function Opportunities() {
   const [searchTerm, setSearchTerm] =
      useState("");
 
+     const fetchOpportunities =
+  async () => {
+    try {
+      const { data } =
+        await getOpportunities();
+
+      setOpportunitiesList(
+        data
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
     useEffect(() => {
-        localStorage.setItem("opportunities", JSON.stringify(opportunitiesList));
-    }, [opportunitiesList]);
+      fetchOpportunities();
+    }, []);
 
 
   const [selectedCategory, setSelectedCategory] =
@@ -81,21 +96,42 @@ function Opportunities() {
     (item) => item.status === "Offer"
   );
     
-  const handleAddOpportunity = (newOpportunity) => {
-  setOpportunitiesList([
-    ...opportunitiesList,
-    newOpportunity,
-  ]);
-    };
+  const handleAddOpportunity =
+  async (
+    newOpportunity
+  ) => {
+    try {
+      const { data } =
+        await createOpportunity(
+          newOpportunity
+        );
 
-  const handleDeleteOpportunity = (id) => {
-  setOpportunitiesList(
-    opportunitiesList.filter(
-      (item) => item.id !== id
-    )
-  );
+      setOpportunitiesList([
+        ...opportunitiesList,
+        data,
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  const handleDeleteOpportunity =
+  async (id) => {
+    try {
+      await deleteOpportunity(
+        id
+      );
+
+      setOpportunitiesList(
+        opportunitiesList.filter(
+          (item) =>
+            item._id !== id
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleMoveOpportunity = (id) => {
   const statusFlow = [
     "Wishlist",
@@ -107,7 +143,7 @@ function Opportunities() {
 
   const updated =
     opportunitiesList.map((item) => {
-      if (item.id === id) {
+      if (item._id === id) {
         const currentIndex =
           statusFlow.indexOf(item.status);
 
@@ -141,26 +177,40 @@ function Opportunities() {
   const [editingOpportunity, setEditingOpportunity] =
   useState(null);
 
-  const handleEditOpportunity = (updatedOpportunity) => {
-  const updated =
-    opportunitiesList.map((item) =>
-      item.id === updatedOpportunity.id
-    ? {
+  const handleEditOpportunity = async (
+  updatedOpportunity
+) => {
+  try {
+    const updatedData = {
       ...updatedOpportunity,
       history: [
-        ...(item.history || []),
+        ...(updatedOpportunity.history || []),
         {
           action: "Edited",
           date: new Date().toLocaleString(),
         },
       ],
-    }
-    : item
-    );
+    };
 
-  setOpportunitiesList(updated);
-  setEditingOpportunity(null);
-  };
+    const { data } =
+      await updateOpportunity(
+        updatedOpportunity._id,
+        updatedData
+      );
+
+    const updated =
+      opportunitiesList.map((item) =>
+        item._id === data._id
+          ? data
+          : item
+      );
+
+    setOpportunitiesList(updated);
+    setEditingOpportunity(null);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const openEditModal = (opportunity) => {
     setEditingOpportunity(opportunity);
