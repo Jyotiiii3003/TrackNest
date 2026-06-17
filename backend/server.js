@@ -24,11 +24,20 @@ app.get(
   }
 );
 
+const opportunityRoutes =
+  require(
+    "./routes/opportunityRoutes"
+  );
+
 app.use(cors());
 app.use(express.json());
 app.use(
   "/api/auth",
   authRoutes
+);
+app.use(
+  "/api/opportunities",
+  opportunityRoutes
 );
 
 app.get("/", (req, res) => {
