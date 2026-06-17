@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AppLayout from "../layouts/AppLayout";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { getOpportunities } from "../services/opportunityService";
 
 function CalendarPage() {
   const [value, setValue] =
@@ -10,19 +11,27 @@ function CalendarPage() {
   const [opportunities, setOpportunities] =
     useState([]);
 
-  useEffect(() => {
-    const saved =
-      JSON.parse(
-        localStorage.getItem(
-          "opportunities"
-        )
-      ) || [];
+  const fetchCalendarData =
+    async () => {
+      try {
+        const { data } =
+          await getOpportunities();
 
-    setOpportunities(saved);
+        setOpportunities(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+  useEffect(() => {
+    fetchCalendarData();
   }, []);
 
   const selectedDateOpportunities =
     opportunities.filter((item) => {
+      if (!item.deadline)
+        return false;
+
       return (
         new Date(
           item.deadline
@@ -65,6 +74,7 @@ function CalendarPage() {
           </div>
         ) : (
           <div className="grid lg:grid-cols-2 gap-8">
+            {/* Calendar */}
             <div className="bg-white rounded-3xl p-6 shadow-sm">
               <ReactCalendar
                 onChange={setValue}
@@ -72,7 +82,8 @@ function CalendarPage() {
               />
             </div>
 
-            <div className="bg-white rounded-3xl p-6 shadow-sm">
+            {/* Selected Date Details */}
+            <div className="bg-white rounded-3xl p-6 shadow-sm max-h-[600px] overflow-y-auto">
               <h2 className="text-2xl font-semibold mb-4">
                 Deadlines on{" "}
                 {value.toLocaleDateString(
@@ -91,7 +102,7 @@ function CalendarPage() {
                   {selectedDateOpportunities.map(
                     (item) => (
                       <div
-                        key={item.id}
+                        key={item._id}
                         className="
                         border
                         rounded-2xl
@@ -109,7 +120,14 @@ function CalendarPage() {
                         </p>
 
                         <p className="text-sm text-gray-400 mt-2">
-                          {item.category}
+                          {
+                            item.category
+                          }
+                        </p>
+
+                        <p className="text-sm text-gray-400 mt-1">
+                          Status:{" "}
+                          {item.status}
                         </p>
                       </div>
                     )
