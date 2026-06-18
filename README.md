@@ -1,4 +1,4 @@
-# ✨ TrackNest  
+# TrackNest  
 ### *Your Career Operating System*
 
 <p align="center">
