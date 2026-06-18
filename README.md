@@ -12,7 +12,7 @@
 
 ---
 
-## 🌸 About TrackNest
+## About TrackNest
 
 TrackNest is a productivity platform built for students and early professionals to organize their:
 
@@ -30,7 +30,7 @@ It transforms chaotic career tracking into a structured workflow.
 
 ---
 
-## 🚀 Problem It Solves
+## Problem It Solves
 
 As students, we often apply to:
 
@@ -51,9 +51,9 @@ TrackNest solves this by creating a centralized opportunity pipeline.
 
 ---
 
-## 🎯 Core Features
+## Core Features
 
-### 📌 Opportunity Management
+###  Opportunity Management
 - Add opportunities
 - Edit opportunities
 - Delete opportunities
@@ -61,7 +61,7 @@ TrackNest solves this by creating a centralized opportunity pipeline.
 
 ---
 
-### 🔄 Kanban Pipeline
+###  Kanban Pipeline
 Track your journey through:
 
 - Wishlist
@@ -73,7 +73,7 @@ Move opportunities step-by-step.
 
 ---
 
-### 📊 Dashboard Analytics
+###  Dashboard Analytics
 Live stats:
 
 - Total applications
@@ -83,22 +83,22 @@ Live stats:
 
 ---
 
-### 🕒 Recent Opportunities Widget
+### Recent Opportunities Widget
 Quickly see your latest applications.
 
 ---
 
-### ⏰ Upcoming Deadlines Widget
+### Upcoming Deadlines Widget
 Shows nearest deadlines first.
 
 ---
 
-### 📅 Calendar View
+### Calendar View
 Chronological deadline view for better planning.
 
 ---
 
-### 🔔 Browser Notifications
+### Browser Notifications
 Get alerts for upcoming deadlines.
 
 ---
@@ -114,7 +114,7 @@ For each opportunity individually.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Technology | Usage |
 |---|---|
@@ -127,7 +127,7 @@ For each opportunity individually.
 
 ---
 
-## 🧠 Project Structure
+## Project Structure
 
 ```bash
 TrackNest/
@@ -146,7 +146,7 @@ TrackNest/
 
 ---
 
-## 🌟 Future Roadmap
+## Future Roadmap
 
 - Firebase Authentication  
 - MongoDB Integration  
@@ -160,7 +160,7 @@ TrackNest/
 
 ---
 
-## 📸 Preview
+## Preview
 
 _Add your screenshots here_
 
@@ -200,7 +200,7 @@ npm run dev
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome.
 
@@ -208,7 +208,7 @@ Feel free to fork this repository and improve TrackNest.
 
 ---
 
-## 👩‍💻 Developer
+## Developer
 
 Built with intent by **Jyoti Mishra**
 
@@ -217,7 +217,7 @@ https://github.com/Jyotiiii3003
 
 ---
 
-## ⭐ Support
+## Support
 
-If you like this project, give it a star ⭐
+If you like this project, give it a star ⭐ 
 It helps and motivates a lot.
