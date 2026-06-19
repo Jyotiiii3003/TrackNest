@@ -6,9 +6,34 @@ import RecentOpportunities from "../components/dashboard/RecentOpportunities";
 import UpcomingDeadlines from "../components/dashboard/UpcomingDeadlines";
 import { getOpportunities } from "../services/opportunityService";
 
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from "chart.js";
+
+import { Pie, Bar } from "react-chartjs-2";
+
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement
+);
+
 function Dashboard() {
   const [opportunities, setOpportunities] =
     useState([]);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
 
   const fetchDashboardData =
     async () => {
@@ -23,25 +48,9 @@ function Dashboard() {
       }
     };
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
   // Analytics
   const total =
     opportunities.length;
-
-  const interviews =
-    opportunities.filter(
-      (item) =>
-        item.status === "Interview"
-    ).length;
-
-  const offers =
-    opportunities.filter(
-      (item) =>
-        item.status === "Offer"
-    ).length;
 
   const completed =
     opportunities.filter(
@@ -53,6 +62,18 @@ function Dashboard() {
     opportunities.filter(
       (item) =>
         item.status === "Rejected"
+    ).length;
+
+  const interviews =
+    opportunities.filter(
+      (item) =>
+        item.status === "Interview"
+    ).length;
+
+  const offers =
+    opportunities.filter(
+      (item) =>
+        item.status === "Offer"
     ).length;
 
   const successRate =
@@ -69,13 +90,12 @@ function Dashboard() {
         )
       : 0;
 
-  // Most applied category
+  // Category count
   const categoryCount = {};
 
   opportunities.forEach((item) => {
     categoryCount[item.category] =
-      (categoryCount[item.category] ||
-        0) + 1;
+      (categoryCount[item.category] || 0) + 1;
   });
 
   const mostApplied =
@@ -95,9 +115,6 @@ function Dashboard() {
   const urgentCount =
     opportunities.filter(
       (item) => {
-        if (!item.deadline)
-          return false;
-
         const diff =
           Math.ceil(
             (new Date(
@@ -148,6 +165,55 @@ function Dashboard() {
     },
   ];
 
+  // Pie Chart Data
+  const statusChartData = {
+    labels: [
+      "Wishlist",
+      "Applied",
+      "Interview",
+      "Offer",
+      "Rejected",
+      "Completed",
+    ],
+    datasets: [
+      {
+        data: [
+          opportunities.filter(
+            (item) =>
+              item.status ===
+              "Wishlist"
+          ).length,
+          opportunities.filter(
+            (item) =>
+              item.status ===
+              "Applied"
+          ).length,
+          interviews,
+          offers,
+          rejected,
+          completed,
+        ],
+      },
+    ],
+  };
+
+  // Bar Chart Data
+  const categoryChartData = {
+    labels:
+      Object.keys(
+        categoryCount
+      ),
+    datasets: [
+      {
+        label: "Applications",
+        data:
+          Object.values(
+            categoryCount
+          ),
+      },
+    ],
+  };
+
   return (
     <AppLayout>
       <div className="space-y-10">
@@ -167,31 +233,24 @@ function Dashboard() {
           </p>
         </div>
 
-        {/* Empty State */}
-        {opportunities.length === 0 && (
-          <div
-            className="
-            bg-white
-            rounded-3xl
-            p-8
-            text-center
-            shadow-sm
-            "
-          >
+        {opportunities.length ===
+          0 && (
+          <div className="bg-white rounded-3xl p-8 text-center shadow-sm">
             <h2 className="text-2xl font-semibold">
               No opportunities yet
             </h2>
 
             <p className="text-gray-500 mt-2">
-              Start tracking your
-              first opportunity to
-              unlock analytics.
+              Start tracking your first
+              opportunity to unlock
+              analytics.
             </p>
           </div>
         )}
 
         {/* Stats */}
-        {opportunities.length > 0 && (
+        {opportunities.length >
+          0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat) => (
               <StatCard
@@ -204,19 +263,47 @@ function Dashboard() {
         )}
 
         {/* Widgets */}
-        {opportunities.length > 0 && (
-          <div className="grid lg:grid-cols-2 gap-6">
-            <RecentOpportunities
-              opportunities={
-                opportunities
-              }
-            />
+        <div className="grid lg:grid-cols-2 gap-6">
+          <RecentOpportunities
+            opportunities={
+              opportunities
+            }
+          />
 
-            <UpcomingDeadlines
-              opportunities={
-                opportunities
-              }
-            />
+          <UpcomingDeadlines
+            opportunities={
+              opportunities
+            }
+          />
+        </div>
+
+        {/* Charts */}
+        {opportunities.length >
+          0 && (
+          <div className="grid lg:grid-cols-2 gap-6">
+            <div className="bg-white rounded-3xl p-6 shadow-sm">
+              <h3 className="text-xl font-semibold mb-4">
+                Application Status
+              </h3>
+
+              <Pie
+                data={
+                  statusChartData
+                }
+              />
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 shadow-sm">
+              <h3 className="text-xl font-semibold mb-4">
+                Category Distribution
+              </h3>
+
+              <Bar
+                data={
+                  categoryChartData
+                }
+              />
+            </div>
           </div>
         )}
       </div>
