@@ -21,7 +21,7 @@ export const updateOpportunity =
     );
 
 export const deleteOpportunity =
-  (id) =>
-    API.delete(
+  async (id) =>
+    await API.delete(
       `/opportunities/${id}`
     );

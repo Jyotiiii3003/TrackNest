@@ -81,7 +81,7 @@ function OpportunityCard({
       <div className="flex gap-4 mt-4 flex-wrap">
         <button
           onClick={() =>
-            onDelete(opportunity.id)
+            onDelete(opportunity._id)
           }
           className="text-xs text-red-500 hover:text-red-700"
         >

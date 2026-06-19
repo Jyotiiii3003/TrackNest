@@ -24,7 +24,7 @@ function KanbanColumn({
       {opportunities.length > 0 ? (
          opportunities.map((opportunity) => (
         <OpportunityCard
-      key={opportunity.id}
+      key={opportunity._id}
       opportunity={opportunity}
       onDelete={onDelete}
       onMove={onMove}
