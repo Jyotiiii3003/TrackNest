@@ -101,22 +101,58 @@ function OpportunityDetailModal({
           </div>
 
           <div>
-            <h3 className="font-semibold mb-2">
-              Documents
-            </h3>
+              <h3 className="font-semibold mb-2">
+                  Documents
+              </h3>
 
-            <p>
-              Resume:{" "}
-              {opportunity.resumeName ||
-                "N/A"}
-            </p>
+              <div className="space-y-3">
+                {/* Resume */}
+                {opportunity.resumeUrl ? (
+                 <a
+                  href={opportunity.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="
+                  block
+                  bg-gray-50
+                  p-4
+                  rounded-2xl
+                  hover:bg-gray-100
+                  transition
+                  "
+                >
+                  📄 Resume —{" "}
+                  {opportunity.resumeName}
+                </a>
+                ) : (
+                    <p>No Resume Uploaded</p>
+                  )}
 
-            <p>
-              Cover Letter:{" "}
-              {opportunity.coverLetterName ||
-                "N/A"}
-            </p>
-          </div>
+                   {/* Cover Letter */}
+                  {opportunity.coverLetterUrl ? (
+                  <a
+                    href={opportunity.coverLetterUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="
+                    block
+                    bg-gray-50
+                    p-4
+                    rounded-2xl
+                    hover:bg-gray-100
+                    transition
+                    "
+                  >
+                    📄 Cover Letter —{" "}
+                    {opportunity.coverLetterName}
+                  </a>
+                    ) : (
+                  <p>
+                     No Cover Letter Uploaded
+                  </p>
+                  )}
+                </div>
+             </div>
 
           <div>
             <h3 className="font-semibold mb-2">
