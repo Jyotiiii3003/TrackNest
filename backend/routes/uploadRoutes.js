@@ -1,19 +1,16 @@
 const express = require("express");
-const multer =
-  require("multer");
-const cloudinary =
-  require("../config/cloudinary");
-const protect =
-  require("../middleware/authMiddleware");
+const multer = require("multer");
+const streamifier = require("streamifier");
+const cloudinary = require("../config/cloudinary");
+const protect = require("../middleware/authMiddleware");
 
-const router =
-  express.Router();
+const router = express.Router();
 
-const storage =
-  multer.memoryStorage();
+const storage = multer.memoryStorage();
 
-const upload =
-  multer({ storage });
+const upload = multer({
+  storage,
+});
 
 router.post(
   "/",
@@ -21,26 +18,45 @@ router.post(
   upload.single("file"),
   async (req, res) => {
     try {
-      const result =
-        await cloudinary.uploader.upload(
-          `data:${req.file.mimetype};base64,${req.file.buffer.toString(
-            "base64"
-          )}`,
+      if (!req.file) {
+        return res.status(400).json({
+          message: "No file uploaded",
+        });
+      }
+
+      const uploadStream =
+        cloudinary.uploader.upload_stream(
           {
-            folder:
-              "tracknest-documents",
+            folder: "tracknest-documents",
+            resource_type:
+            req.file.mimetype ===
+            "application/pdf"
+            ? "image"
+            : "raw",
+          },
+          (error, result) => {
+            if (error) {
+              return res.status(500).json({
+                message: error.message,
+              });
+            }
+
+            res.json({
+              url: result.secure_url,
+              originalName:
+                req.file.originalname,
+            });
           }
         );
 
-      res.json({
-        url: result.secure_url,
-        originalName:
-          req.file.originalname,
-      });
+      streamifier
+        .createReadStream(
+          req.file.buffer
+        )
+        .pipe(uploadStream);
     } catch (error) {
       res.status(500).json({
-        message:
-          error.message,
+        message: error.message,
       });
     }
   }

@@ -4,6 +4,7 @@
     "cloudinary": "^2.10.0",
     "framer-motion": "^12.40.0",
     "multer": "^2.2.0",
-    "react-calendar": "^6.0.1"
+    "react-calendar": "^6.0.1",
+    "streamifier": "^0.1.1"
   }
 }
