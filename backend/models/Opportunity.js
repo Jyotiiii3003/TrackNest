@@ -41,8 +41,15 @@ const opportunitySchema =
       resumeName: {
         type: String,
       },
-
+      
+      resumeUrl: {
+        type: String,
+      },
       coverLetterName: {
+        type: String,
+      },
+      
+      coverLetterUrl: {
         type: String,
       },
 
