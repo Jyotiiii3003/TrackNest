@@ -160,18 +160,6 @@ TrackNest/
 
 ---
 
-## Preview
-
-_Add your screenshots here_
-
-```md
-![Dashboard](./docs/dashboard.png)
-![Opportunities](./docs/opportunities.png)
-![Calendar](./docs/calendar.png)
-```
-
----
-
 ## ⚡ Installation
 
 Clone the repository:
