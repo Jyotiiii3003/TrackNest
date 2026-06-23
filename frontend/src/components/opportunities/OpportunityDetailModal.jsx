@@ -122,7 +122,7 @@ function OpportunityDetailModal({
             <div className="space-y-3">
               {opportunity.resumeUrl ? (
                 <a
-                  href={opportunity.resumeUrl}
+                  href={`${opportunity.resumeUrl}?fl_attachment`}
                   target="_blank"
                   rel="noreferrer"
                   className="
@@ -143,9 +143,7 @@ function OpportunityDetailModal({
 
               {opportunity.coverLetterUrl ? (
                 <a
-                  href={
-                    opportunity.coverLetterUrl
-                  }
+                  href={`${opportunity.coverLetterUrl}?fl_attachment`}
                   target="_blank"
                   rel="noreferrer"
                   className="
