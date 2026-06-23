@@ -36,7 +36,7 @@ function UpcomingDeadlines({
       <div className="space-y-4">
         {upcoming.map((item) => (
           <div
-            key={item.id}
+            key={item._id}
             className="border-b border-black/5 pb-3"
           >
             <h3 className="font-medium">

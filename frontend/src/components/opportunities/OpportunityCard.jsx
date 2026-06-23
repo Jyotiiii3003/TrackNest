@@ -4,6 +4,7 @@ function OpportunityCard({
   onMove,
   onEdit,
   onView,
+  deletingId
 }) {
   const categoryColors = {
     Internship: "bg-purple-100 text-purple-600",
@@ -85,7 +86,9 @@ function OpportunityCard({
           }
           className="text-xs text-red-500 hover:text-red-700"
         >
-          Delete
+          {deletingId === opportunity._id
+          ?"Deleting..."
+          :"Delete"}
         </button>
 
         <button

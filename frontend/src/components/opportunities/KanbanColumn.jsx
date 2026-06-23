@@ -7,6 +7,7 @@ function KanbanColumn({
   onMove,
   onEdit,
   onView,
+  deletingId
 }) {
   return (
     <div
@@ -30,6 +31,7 @@ function KanbanColumn({
       onMove={onMove}
       onEdit={onEdit}
       onView={onView}
+      deletingId={deletingId}
     />
   ))
       ) : (

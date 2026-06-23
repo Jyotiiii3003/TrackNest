@@ -10,6 +10,8 @@ import {
 import AddOpportunityModal from "../components/opportunities/AddOpportunityModal";
 import OpportunityDetailModal from "../components/opportunities/OpportunityDetailModal";
 function Opportunities() {
+  const [deletingId, setDeletingId] =
+  useState(null);
   const [opportunitiesList, setOpportunitiesList] =
   useState([]);
     
@@ -118,9 +120,8 @@ function Opportunities() {
   const handleDeleteOpportunity =
   async (id) => {
     try {
-      await deleteOpportunity(
-        id
-      );
+      setDeletingId(id);
+      await deleteOpportunity(id);
 
       setOpportunitiesList(
         opportunitiesList.filter(
@@ -128,7 +129,9 @@ function Opportunities() {
             item._id !== id
         )
       );
+      setDeletingId(null);
     } catch (error) {
+      setDeletingId(null);
       console.log(error);
     }
   };
@@ -375,6 +378,7 @@ return (
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
         onView={openDetails}
+        deletingId={deletingId}
       />
 
       <KanbanColumn
@@ -384,6 +388,7 @@ return (
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
         onView={openDetails}
+        deletingId={deletingId}
       />
 
       <KanbanColumn
@@ -393,6 +398,7 @@ return (
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
         onView={openDetails}
+        deletingId={deletingId}
       />
 
       <KanbanColumn
@@ -402,6 +408,7 @@ return (
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
         onView={openDetails}
+        deletingId={deletingId}
       />
 
       <KanbanColumn
@@ -411,6 +418,7 @@ return (
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
         onView={openDetails}
+        deletingId={deletingId}
       />
 
       <KanbanColumn
@@ -420,6 +428,7 @@ return (
         onMove={handleMoveOpportunity}
         onEdit={openEditModal}
         onView={openDetails}
+        deletingId={deletingId}
       />
     </div>
 

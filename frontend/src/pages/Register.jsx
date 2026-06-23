@@ -13,6 +13,10 @@ function Register() {
 
   const [password, setPassword] =
     useState("");
+  const [loading, setLoading] =
+  useState(false);  
+  const [error, setError] =
+  useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,9 +27,11 @@ function Register() {
         email,
         password,
       });
-
+      setLoading(false);
       navigate("/login");
     } catch (error) {
+      setLoading(false);
+      setError("Error occurred while registering");
       console.log(error);
     }
   };
@@ -117,9 +123,14 @@ function Register() {
             "
             required
           />
-
+          {error && (
+            <p className="text-red-500 text-sm">
+              {error}
+            </p>
+          )}
           <button
             type="submit"
+            disabled={loading}
             className="
             w-full
             bg-black
@@ -128,7 +139,10 @@ function Register() {
             rounded-xl
             "
           >
-            Register
+            {loading
+              ? "Registering..."
+              : "Register"}
+              
           </button>
         </form>
 

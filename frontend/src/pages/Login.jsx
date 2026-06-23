@@ -11,8 +11,16 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
+     const [loading, setLoading] =
+  useState(false);
+
+  const [error, setError] =
+  useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
     try {
       const { data } =
@@ -30,12 +38,17 @@ function Login() {
         "user",
         JSON.stringify(data.user)
       );
+      setLoading(false);
 
-      navigate("/dashboard");
+      window.location.href = "/dashboard";
     } catch (error) {
+      setLoading(false);
+      setError("Invalid email or password");
       console.log(error.response.data);
-    }
+    } 
   };
+
+ 
 
   return (
     <div
@@ -106,9 +119,14 @@ function Login() {
             "
             required
           />
-
+          {error && (
+            <p className="text-red-500 text-sm">
+              {error}
+            </p>
+          )}
           <button
             type="submit"
+            disabled={loading}
             className="
             w-full
             bg-black
@@ -117,7 +135,10 @@ function Login() {
             rounded-xl
             "
           >
-            Login
+            {loading
+              ? "Logging in..."
+              : "Login"}
+              
           </button>
         </form>
 
