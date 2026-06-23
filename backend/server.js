@@ -32,11 +32,17 @@ const opportunityRoutes =
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://track-nest-eta.vercel.app",
+    origin: "*",
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE",
     ],
-    credentials: true,
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+    ],
   })
 );
 app.use(express.json());
