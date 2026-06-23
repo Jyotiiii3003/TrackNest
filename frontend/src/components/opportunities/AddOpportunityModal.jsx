@@ -48,11 +48,36 @@ function AddOpportunityModal({
 
     onAdd({
       ...formData,
+
       history:
         existingData?.history || [
           {
             action: "Created",
             date: new Date().toLocaleString(),
+          },
+        ],
+
+      interviewRounds:
+        existingData?.interviewRounds || [
+          {
+            roundName: "OA",
+            status: "Pending",
+            notes: "",
+          },
+          {
+            roundName: "Round 1",
+            status: "Pending",
+            notes: "",
+          },
+          {
+            roundName: "Round 2",
+            status: "Pending",
+            notes: "",
+          },
+          {
+            roundName: "HR",
+            status: "Pending",
+            notes: "",
           },
         ],
     });
@@ -82,8 +107,7 @@ function AddOpportunityModal({
             onChange={(e) =>
               setFormData({
                 ...formData,
-                title:
-                  e.target.value,
+                title: e.target.value,
               })
             }
             required
@@ -200,11 +224,172 @@ function AddOpportunityModal({
             onChange={(e) =>
               setFormData({
                 ...formData,
-                notes:
+                notes: e.target.value,
+              })
+            }
+          />
+
+          <textarea
+            placeholder="Important Links"
+            className="w-full border rounded-xl p-3"
+            rows="2"
+            value={
+              formData.importantLinks
+            }
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                importantLinks:
                   e.target.value,
               })
             }
           />
+
+          <input
+            type="text"
+            placeholder="Referral Contact"
+            className="w-full border rounded-xl p-3"
+            value={
+              formData.referralContact
+            }
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                referralContact:
+                  e.target.value,
+              })
+            }
+          />
+
+          <textarea
+            placeholder="Strategy Notes"
+            className="w-full border rounded-xl p-3"
+            rows="3"
+            value={
+              formData.strategyNotes
+            }
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                strategyNotes:
+                  e.target.value,
+              })
+            }
+          />
+
+          <textarea
+            placeholder="Preparation Notes"
+            className="w-full border rounded-xl p-3"
+            rows="3"
+            value={formData.prepNotes}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                prepNotes:
+                  e.target.value,
+              })
+            }
+          />
+
+          <input
+            type="date"
+            className="w-full border rounded-xl p-3"
+            value={
+              formData.followUpDate
+            }
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                followUpDate:
+                  e.target.value,
+              })
+            }
+          />
+
+          <select
+            className="w-full border rounded-xl p-3"
+            value={
+              formData.followUpStatus
+            }
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                followUpStatus:
+                  e.target.value,
+              })
+            }
+          >
+            <option>Pending</option>
+            <option>Done</option>
+            <option>Skipped</option>
+            <option>Responded</option>
+          </select>
+
+          <select
+            className="w-full border rounded-xl p-3"
+            value={formData.category}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                category:
+                  e.target.value,
+              })
+            }
+          >
+            <option>Internship</option>
+            <option>Hackathon</option>
+            <option>Scholarship</option>
+            <option>Open Source</option>
+            <option>Campus Ambassador</option>
+            <option>Competition</option>
+            <option>Fellowship</option>
+            <option>Placement Drive</option>
+            <option>Event</option>
+          </select>
+
+          <select
+            className="w-full border rounded-xl p-3"
+            value={
+              formData.reminderDays
+            }
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                reminderDays: Number(
+                  e.target.value
+                ),
+              })
+            }
+          >
+            <option value={1}>
+              Remind 1 day before
+            </option>
+            <option value={3}>
+              Remind 3 days before
+            </option>
+            <option value={7}>
+              Remind 7 days before
+            </option>
+          </select>
+
+          <select
+            className="w-full border rounded-xl p-3"
+            value={formData.status}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                status:
+                  e.target.value,
+              })
+            }
+          >
+            <option>Wishlist</option>
+            <option>Applied</option>
+            <option>Interview</option>
+            <option>Offer</option>
+            <option>Rejected</option>
+            <option>Completed</option>
+          </select>
 
           <input
             type="date"

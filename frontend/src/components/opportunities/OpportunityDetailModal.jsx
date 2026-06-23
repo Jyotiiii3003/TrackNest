@@ -1,10 +1,22 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 function OpportunityDetailModal({
   isOpen,
   onClose,
   opportunity,
 }) {
+  const [rounds, setRounds] =
+    useState([]);
+
+  useEffect(() => {
+    if (opportunity?.interviewRounds) {
+      setRounds(
+        opportunity.interviewRounds
+      );
+    }
+  }, [opportunity]);
+
   if (!isOpen || !opportunity)
     return null;
 
@@ -76,6 +88,7 @@ function OpportunityDetailModal({
         </div>
 
         <div className="space-y-6">
+          {/* Application Info */}
           <div>
             <h3 className="font-semibold mb-2">
               Application Info
@@ -100,15 +113,15 @@ function OpportunityDetailModal({
             </p>
           </div>
 
+          {/* Documents */}
           <div>
-              <h3 className="font-semibold mb-2">
-                  Documents
-              </h3>
+            <h3 className="font-semibold mb-2">
+              Documents
+            </h3>
 
-              <div className="space-y-3">
-                {/* Resume */}
-                {opportunity.resumeUrl ? (
-                 <a
+            <div className="space-y-3">
+              {opportunity.resumeUrl ? (
+                <a
                   href={opportunity.resumeUrl}
                   target="_blank"
                   rel="noreferrer"
@@ -124,36 +137,40 @@ function OpportunityDetailModal({
                   📄 Resume —{" "}
                   {opportunity.resumeName}
                 </a>
-                ) : (
-                    <p>No Resume Uploaded</p>
-                  )}
+              ) : (
+                <p>No Resume Uploaded</p>
+              )}
 
-                   {/* Cover Letter */}
-                  {opportunity.coverLetterUrl ? (
-                  <a
-                    href={opportunity.coverLetterUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="
-                    block
-                    bg-gray-50
-                    p-4
-                    rounded-2xl
-                    hover:bg-gray-100
-                    transition
-                    "
-                  >
-                    📄 Cover Letter —{" "}
-                    {opportunity.coverLetterName}
-                  </a>
-                    ) : (
-                  <p>
-                     No Cover Letter Uploaded
-                  </p>
-                  )}
-                </div>
-             </div>
+              {opportunity.coverLetterUrl ? (
+                <a
+                  href={
+                    opportunity.coverLetterUrl
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                  className="
+                  block
+                  bg-gray-50
+                  p-4
+                  rounded-2xl
+                  hover:bg-gray-100
+                  transition
+                  "
+                >
+                  📄 Cover Letter —{" "}
+                  {
+                    opportunity.coverLetterName
+                  }
+                </a>
+              ) : (
+                <p>
+                  No Cover Letter Uploaded
+                </p>
+              )}
+            </div>
+          </div>
 
+          {/* Notes */}
           <div>
             <h3 className="font-semibold mb-2">
               Notes
@@ -165,61 +182,73 @@ function OpportunityDetailModal({
             </div>
           </div>
 
-            <div>
-                <h3 className="font-semibold mb-2">
-                Important Links
-                </h3>
+          {/* Important Links */}
+          <div>
+            <h3 className="font-semibold mb-2">
+              Important Links
+            </h3>
 
-                <div className="bg-gray-50 p-4 rounded-2xl">
-                {opportunity.importantLinks || "No links"}
-                </div>
-            </div> 
-
-            <div>
-                    <h3 className="font-semibold mb-2">
-                    Referral Contact
-                    </h3>
-
-                <p>
-                 {opportunity.referralContact || "None"}
-                </p>
+            <div className="bg-gray-50 p-4 rounded-2xl">
+              {opportunity.importantLinks ||
+                "No links"}
             </div>
+          </div>
 
-            <div>
-                <h3 className="font-semibold mb-2">
-                Strategy Notes
-                 </h3>
+          {/* Referral Contact */}
+          <div>
+            <h3 className="font-semibold mb-2">
+              Referral Contact
+            </h3>
 
-                <div className="bg-gray-50 p-4 rounded-2xl">
-                    {opportunity.strategyNotes || "No strategy notes"}
-                </div>
+            <p>
+              {opportunity.referralContact ||
+                "None"}
+            </p>
+          </div>
+
+          {/* Strategy Notes */}
+          <div>
+            <h3 className="font-semibold mb-2">
+              Strategy Notes
+            </h3>
+
+            <div className="bg-gray-50 p-4 rounded-2xl">
+              {opportunity.strategyNotes ||
+                "No strategy notes"}
             </div>
+          </div>
 
-            <div>
-                <h3 className="font-semibold mb-2">
-                Interview Prep
-                 </h3>
+          {/* Interview Prep */}
+          <div>
+            <h3 className="font-semibold mb-2">
+              Interview Prep
+            </h3>
 
-                <div className="bg-gray-50 p-4 rounded-2xl">
-                {opportunity.prepNotes || "No prep notes"}
-                </div>
+            <div className="bg-gray-50 p-4 rounded-2xl">
+              {opportunity.prepNotes ||
+                "No prep notes"}
             </div>
+          </div>
 
-            <div>
-                 <h3 className="font-semibold mb-2">
-                    Follow-up Tracker
-                </h3>
+          {/* Follow-up Tracker */}
+          <div>
+            <h3 className="font-semibold mb-2">
+              Follow-up Tracker
+            </h3>
 
-                <p>
-                 Date: {opportunity.followUpDate || "Not set"}
-                 </p>
+            <p>
+              Date:{" "}
+              {opportunity.followUpDate ||
+                "Not set"}
+            </p>
 
-                <p>
-                     Status: {opportunity.followUpStatus}
-                </p>
-            </div>
+            <p>
+              Status:{" "}
+              {opportunity.followUpStatus}
+            </p>
+          </div>
 
-
+          {/* Reminder */}
           <div>
             <h3 className="font-semibold mb-2">
               Reminder
@@ -231,34 +260,93 @@ function OpportunityDetailModal({
             </p>
           </div>
 
+          {/* Interview Tracker */}
           <div>
             <h3 className="font-semibold mb-2">
-                Activity Timeline
+              Interview Tracker
             </h3>
 
             <div className="space-y-3">
-                {opportunity.history?.map(
-                (entry, index) => (
-            <div
-                key={index}
-                className="
-                bg-gray-50
-                rounded-2xl
-                p-3
-                "
-                >
-                <p className="font-medium">
-                    {entry.action}
-                </p>
+              {rounds?.map(
+                (round, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-2xl p-4"
+                  >
+                    <p className="font-medium">
+                      {round.roundName}
+                    </p>
 
-                <p className="text-sm text-gray-400 mt-1">
-                    {entry.date}
-                </p>
-                </div>
+                    <select
+                      className="mt-2 border rounded-xl p-2 w-full"
+                      value={round.status}
+                      onChange={(e) => {
+                        const updatedRounds =
+                          [...rounds];
+
+                        updatedRounds[
+                          index
+                        ].status =
+                          e.target.value;
+
+                        setRounds(
+                          updatedRounds
+                        );
+                      }}
+                    >
+                      <option>
+                        Pending
+                      </option>
+                      <option>
+                        Cleared
+                      </option>
+                      <option>
+                        Rejected
+                      </option>
+                      <option>
+                        Scheduled
+                      </option>
+                    </select>
+
+                    <p className="text-sm text-gray-400 mt-1">
+                      {round.notes ||
+                        "No notes"}
+                    </p>
+                  </div>
                 )
-                )}
+              )}
             </div>
+          </div>
+
+          {/* Activity Timeline */}
+          <div>
+            <h3 className="font-semibold mb-2">
+              Activity Timeline
+            </h3>
+
+            <div className="space-y-3">
+              {opportunity.history?.map(
+                (entry, index) => (
+                  <div
+                    key={index}
+                    className="
+                    bg-gray-50
+                    rounded-2xl
+                    p-3
+                    "
+                  >
+                    <p className="font-medium">
+                      {entry.action}
+                    </p>
+
+                    <p className="text-sm text-gray-400 mt-1">
+                      {entry.date}
+                    </p>
+                  </div>
+                )
+              )}
             </div>
+          </div>
         </div>
       </motion.div>
     </div>

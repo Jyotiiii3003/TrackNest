@@ -64,6 +64,16 @@ const opportunitySchema =
           date: String,
         },
       ],
+      interviewRounds: [
+      {
+          roundName: String,
+          status: {
+          type: String,
+          default: "Pending",
+        },
+          notes: String,
+       },
+      ],
     },
     {
       timestamps: true,
