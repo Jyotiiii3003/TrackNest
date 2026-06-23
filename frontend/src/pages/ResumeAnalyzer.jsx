@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppLayout from "../layouts/AppLayout";
-import API from "../services/api";
+import API from "../api"
 
 function ResumeAnalyzer() {
   const [resume, setResume] =
