@@ -9,6 +9,7 @@ dotenv.config();
 
 connectDB();
 
+
 const app = express();
 const protect =
   require("./middleware/authMiddleware");
@@ -66,3 +67,7 @@ app.use(
   "/api/resume",
   resumeRoutes
 );
+
+const startDeadlineNotifier =
+  require("./utils/deadlineNotifier");
+startDeadlineNotifier();
