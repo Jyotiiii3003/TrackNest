@@ -34,6 +34,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "https://track-nest-eta.vercel.app",
     ],
     credentials: true,
   })
