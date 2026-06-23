@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppLayout from "../layouts/AppLayout";
-import axios from "axios";
+import API from "../services/api";
 
 function ResumeAnalyzer() {
   const [resume, setResume] =
@@ -36,7 +36,7 @@ function ResumeAnalyzer() {
         setLoading(true);
 
         const { data } =
-          await axios.post(
+          await API.post(
             "http://localhost:5000/api/resume/analyze",
             formData
           );
