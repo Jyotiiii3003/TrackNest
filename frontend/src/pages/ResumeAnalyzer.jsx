@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppLayout from "../layouts/AppLayout";
-import API from "../api"
+import API from "../api";
 
 function ResumeAnalyzer() {
   const [resume, setResume] =
@@ -37,8 +37,14 @@ function ResumeAnalyzer() {
 
         const { data } =
           await API.post(
-            "http://localhost:5000/api/resume/analyze",
-            formData
+            "/resume/analyze",
+            formData,
+            {
+              headers: {
+                "Content-Type":
+                  "multipart/form-data",
+              },
+            }
           );
 
         setResult(data);
@@ -94,6 +100,7 @@ function ResumeAnalyzer() {
 
           <button
             onClick={handleAnalyze}
+            disabled={loading}
             className="px-6 py-3 bg-black text-white rounded-xl"
           >
             {loading
@@ -106,7 +113,7 @@ function ResumeAnalyzer() {
           <div className="bg-white rounded-3xl p-8 shadow-sm space-y-6">
             <div>
               <h2 className="text-3xl font-bold">
-                ATS Score:
+                ATS Score:{" "}
                 {result.atsScore}/100
               </h2>
             </div>
@@ -117,7 +124,7 @@ function ResumeAnalyzer() {
               </h3>
 
               {result.missingSkills
-                .length > 0 ? (
+                ?.length > 0 ? (
                 <ul className="list-disc pl-6">
                   {result.missingSkills.map(
                     (
@@ -143,7 +150,7 @@ function ResumeAnalyzer() {
               </h3>
 
               {result.suggestions
-                .length > 0 ? (
+                ?.length > 0 ? (
                 <ul className="list-disc pl-6">
                   {result.suggestions.map(
                     (
