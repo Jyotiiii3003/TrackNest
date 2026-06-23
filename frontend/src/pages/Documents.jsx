@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import AppLayout from "../layouts/AppLayout";
+import {
+  getAllOpportunities,
+} from "../services/opportunityService";
+
 
 function Documents() {
   const [opportunities, setOpportunities] =
@@ -9,15 +13,20 @@ function Documents() {
     useState("");
 
   useEffect(() => {
-    const saved =
-      JSON.parse(
-        localStorage.getItem(
-          "opportunities"
-        )
-      ) || [];
+  const fetchDocuments =
+    async () => {
+      try {
+        const { data } =
+          await getAllOpportunities();
 
-    setOpportunities(saved);
-  }, []);
+        setOpportunities(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+  fetchDocuments();
+}, []);
 
   const groupDocuments = (type) => {
     const grouped = {};
