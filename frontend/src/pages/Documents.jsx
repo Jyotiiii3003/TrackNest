@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AppLayout from "../layouts/AppLayout";
 import {
-  getAllOpportunities,
+  getOpportunities,
 } from "../services/opportunityService";
 
 
@@ -17,7 +17,7 @@ function Documents() {
     async () => {
       try {
         const { data } =
-          await getAllOpportunities();
+          await getOpportunities();
 
         setOpportunities(data);
       } catch (error) {
