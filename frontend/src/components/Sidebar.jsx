@@ -9,6 +9,7 @@ function Sidebar() {
     { name: "Calendar", path: "/calendar" },
     { name: "Documents", path: "/documents" },
     { name: "Settings", path: "/settings" },
+    { name: "Resume Analyzer", path: "/resume-analyzer" },
   ];
 
   return (

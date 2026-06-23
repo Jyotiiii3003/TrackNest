@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
-
+import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -94,6 +94,17 @@ function App() {
           ) : (
             <Navigate to="/login" />
           )
+        }
+      />
+
+      <Route
+        path="/resume-analyzer"
+        element={
+        token ? (
+        <ResumeAnalyzer />
+        ) : (
+        <Navigate to="/login" />
+        )
         }
       />
     </Routes>

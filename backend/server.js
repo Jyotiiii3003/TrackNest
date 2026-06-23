@@ -59,3 +59,10 @@ app.use(
   "/api/upload",
   uploadRoutes
 );
+
+const resumeRoutes =
+require("./routes/resumeRoutes");
+app.use(
+  "/api/resume",
+  resumeRoutes
+);
