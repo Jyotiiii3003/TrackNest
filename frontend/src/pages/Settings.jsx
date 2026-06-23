@@ -1,28 +1,49 @@
-import { useState } from "react";
-import {  useEffect } from "react";
+import { useState, useEffect } from "react";
+
 function Settings() {
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
   const [settings, setSettings] =
     useState({
-      name: "Jyoti",
-      email: "",
+      name: user?.name || "",
+      email: user?.email || "",
       emailNotifications: true,
       browserNotifications: true,
       defaultReminderDays: 3,
       defaultResume: "",
       defaultCoverLetter: "",
     });
-    useEffect(() => {
-  const saved = localStorage.getItem(
-    "tracknestSettings"
-  );
 
-  if (saved) {
-    setSettings(JSON.parse(saved));
-  }
-}, []);
+  useEffect(() => {
+    const saved = localStorage.getItem(
+      "tracknestSettings"
+    );
+
+    if (saved) {
+      const parsed =
+        JSON.parse(saved);
+
+      setSettings({
+        ...parsed,
+        name:
+          user?.name ||
+          parsed.name,
+        email:
+          user?.email ||
+          parsed.email,
+      });
+    }
+  }, []);
+
   const handleChange = (e) => {
-    const { name, value, type, checked } =
-      e.target;
+    const {
+      name,
+      value,
+      type,
+      checked,
+    } = e.target;
 
     setSettings({
       ...settings,
