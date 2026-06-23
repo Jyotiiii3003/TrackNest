@@ -28,11 +28,7 @@ router.post(
         cloudinary.uploader.upload_stream(
           {
             folder: "tracknest-documents",
-            resource_type:
-            req.file.mimetype ===
-            "application/pdf"
-            ? "image"
-            : "raw",
+           resource_type: "raw",
           },
           (error, result) => {
             if (error) {
