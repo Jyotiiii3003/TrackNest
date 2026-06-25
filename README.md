@@ -1,211 +1,258 @@
-# TrackNest  
-### *Your Career Operating System*
+TrackNest — Personal Opportunity Management Platform
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Version-v1.7-black?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Frontend-React-blue?style=for-the-badge&logo=react" />
-  <img src="https://img.shields.io/badge/Styling-TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss" />
-  <img src="https://img.shields.io/badge/Storage-LocalStorage-yellow?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Notifications-Browser_API-red?style=for-the-badge" />
-</p>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:111827,100:374151&height=220&section=header&text=TrackNest&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Track%20Internships%20•%20Placements%20•%20Scholarships%20•%20Hackathons&descAlignY=60"/>
+</p><p align="center">
+  <img src="https://img.shields.io/badge/React-Frontend-blue?style=for-the-badge&logo=react"/>
+  <img src="https://img.shields.io/badge/Node.js-Backend-green?style=for-the-badge&logo=node.js"/>
+  <img src="https://img.shields.io/badge/Express-Framework-black?style=for-the-badge&logo=express"/>
+  <img src="https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb"/>
+  <img src="https://img.shields.io/badge/Cloudinary-Storage-blue?style=for-the-badge&logo=cloudinary"/>
+  <img src="https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge&logo=jsonwebtokens"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge"/>
+</p>---
+
+Overview
+
+TrackNest is a full-stack web application designed to simplify the management of internships, placements, scholarships, and hackathons.
+
+As a student, managing multiple applications often becomes overwhelming. Deadlines get missed, resumes remain scattered, interview rounds become difficult to track, and important follow-ups are forgotten.
+
+TrackNest solves this by bringing the entire opportunity management workflow into one centralized platform.
 
 ---
 
-## About TrackNest
+Problem Statement
 
-TrackNest is a productivity platform built for students and early professionals to organize their:
+Managing multiple opportunities comes with several challenges:
 
-- Internships  
-- Hackathons  
-- Scholarships  
-- Open Source Programs  
-- Campus Ambassador Roles  
-- Placement Drives  
-- Events  
+- Missing deadlines
+- Scattered resumes and cover letters
+- Difficulty tracking interview rounds
+- Missed follow-ups
+- Unorganized application history
 
-Instead of forgetting deadlines, losing application links, or missing interview stages, TrackNest helps you manage everything in one place.
-
-It transforms chaotic career tracking into a structured workflow.
+TrackNest helps solve these problems by creating a structured workflow for opportunity management.
 
 ---
 
-## Problem It Solves
+Features
 
-As students, we often apply to:
+Opportunity Tracking
 
-✔ Internships  
-✔ Hackathons  
-✔ Open Source Programs  
-✔ Events  
-✔ Ambassador Programs  
-
-But we forget:
-
-- Deadlines  
-- Current application stage  
-- Important dates  
-- Required documents  
-
-TrackNest solves this by creating a centralized opportunity pipeline.
-
----
-
-## Core Features
-
-###  Opportunity Management
-- Add opportunities
-- Edit opportunities
-- Delete opportunities
-- Search opportunities
-
----
-
-###  Kanban Pipeline
-Track your journey through:
+Manage opportunities with a Kanban workflow:
 
 - Wishlist
 - Applied
 - Interview
 - Offer
-
-Move opportunities step-by-step.
+- Rejected
 
 ---
 
-###  Dashboard Analytics
-Live stats:
+Document Vault
 
-- Total applications
-- Interviews
-- Offers
+Store and manage:
+
+- Resumes
+- Cover Letters
+- Application documents
+
+Integrated with Cloudinary for secure cloud storage.
+
+---
+
+ATS Resume Analyzer
+
+Analyze resumes for:
+
+- ATS Score
+- Missing Skills
+- Improvement Suggestions
+
+---
+
+Deadline Reminder System
+
+Stay updated with:
+
+- Email notifications
+- Reminder customization
+- Upcoming deadline tracking
+
+---
+
+Interview Tracker
+
+Track all interview rounds:
+
+- Online Assessment
+- Technical Round
+- HR Round
+- Final Round
+
+Track statuses:
+
+- Pending
+- Scheduled
+- Cleared
+- Rejected
+
+---
+
+Dashboard Analytics
+
+Provides:
+
+- Total applications overview
 - Upcoming deadlines
+- Recent activities
+- Quick insights
 
 ---
 
-### Recent Opportunities Widget
-Quickly see your latest applications.
+User Settings
+
+Manage:
+
+- Profile details
+- Notification preferences
+- Default reminders
+- Default documents
 
 ---
 
-### Upcoming Deadlines Widget
-Shows nearest deadlines first.
+Tech Stack
+
+Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- Framer Motion
+
+Backend
+
+- Node.js
+- Express.js
+
+Database
+
+- MongoDB Atlas
+
+Cloud Storage
+
+- Cloudinary
+
+Authentication
+
+- JWT Authentication
+
+Notifications
+
+- Nodemailer
+- Node Cron
 
 ---
 
-### Calendar View
-Chronological deadline view for better planning.
+Project Structure
 
----
-
-### Browser Notifications
-Get alerts for upcoming deadlines.
-
----
-
-### ⚙ Custom Reminder Settings
-Set reminders:
-
-- 1 day before
-- 3 days before
-- 7 days before
-
-For each opportunity individually.
-
----
-
-## Tech Stack
-
-| Technology | Usage |
-|---|---|
-| React.js | Frontend |
-| Tailwind CSS | Styling |
-| Framer Motion | Animations |
-| LocalStorage | Data Persistence |
-| Browser Notification API | Deadline Alerts |
-| React Router | Routing |
-
----
-
-## Project Structure
-
-```bash
 TrackNest/
 │── frontend/
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── layouts/
-│   │   ├── data/
-│   │   ├── utils/
-│   │   └── main.jsx
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── utils/
 │
-│── backend/ (coming soon)
-│── docs/
-```
+│── backend/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── config/
+│   ├── utils/
 
 ---
 
-## Future Roadmap
+Installation
 
-- Firebase Authentication  
-- MongoDB Integration  
-- Cloud Sync  
-- Email Reminders  
-- WhatsApp Alerts  
-- Resume Vault  
-- Document Upload System  
-- AI Deadline Prioritizer  
-- Smart Opportunity Recommendations  
+Clone Repository
 
----
-
-## ⚡ Installation
-
-Clone the repository:
-
-```bash
 git clone https://github.com/Jyotiiii3003/TrackNest.git
-```
+cd TrackNest
 
-Go to frontend:
+---
 
-```bash
-cd TrackNest/frontend
-```
+Backend Setup
 
-Install dependencies:
-
-```bash
+cd backend
 npm install
-```
-
-Run:
-
-```bash
 npm run dev
-```
+
+Create ".env"
+
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+EMAIL_USER=your_email
+EMAIL_PASS=your_app_password
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 
 ---
 
-## Contributing
+Frontend Setup
 
-Contributions are welcome.
+cd frontend
+npm install
+npm run dev
 
-Feel free to fork this repository and improve TrackNest.
+Create ".env"
 
----
-
-## Developer
-
-Built with intent by **Jyoti Mishra**
-
-GitHub:  
-https://github.com/Jyotiiii3003
+VITE_API_URL=http://localhost:5000
 
 ---
 
-## Support
+Deployment
 
-If you like this project, give it a star ⭐ 
-It helps and motivates a lot.
+Frontend: Vercel
+Backend: Render
+Database: MongoDB Atlas
+Storage: Cloudinary
+
+---
+
+Live Demo
+
+https://track-nest-eta.vercel.app
+
+---
+
+Repository
+
+https://github.com/Jyotiiii3003/TrackNest
+
+---
+
+Future Improvements
+
+- Forgot Password
+- Profile Update API
+- Multiple Resume Versions
+- Advanced Analytics
+- Export Reports
+- Team Collaboration
+
+---
+
+Author
+
+Jyoti Mishra
+B.Tech CSE
+Full Stack Developer
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:111827,100:374151&height=120&section=footer"/>
+</p>
