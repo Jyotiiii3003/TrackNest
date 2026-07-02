@@ -10,7 +10,7 @@ TrackNest — Personal Opportunity Management Platform
   <img src="https://img.shields.io/badge/Cloudinary-Storage-blue?style=for-the-badge&logo=cloudinary"/>
   <img src="https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge&logo=jsonwebtokens"/>
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge"/>
-</p>---
+</p>
 
 Overview
 
